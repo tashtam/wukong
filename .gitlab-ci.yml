@@ -1,0 +1,22 @@
+image: maven:3.8.8
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  tags:
+    - comp2100
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  tags:
+    - comp2100
+  script:
+    - mvn test
+  allow_failure: true
+  artifacts:
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
