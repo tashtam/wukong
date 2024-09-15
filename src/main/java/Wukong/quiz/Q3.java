@@ -23,12 +23,12 @@ public class Q3 implements Quiz {
             String answer = keyBoard.nextLine();
             if (answer.equals("ZhuBajie")) {
                 solved = true;
-                System.out.println("You solved the question");
+                System.out.println("Congratulations, you solved the question!");
                 break;
             } else if (answer.equals("quit question")) {
                 break;
             } else {
-                System.out.println("This answer is wrong, try again");
+                System.out.println("This answer is wrong, please try again!");
             }
         }
         return solved;

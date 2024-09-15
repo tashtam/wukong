@@ -7,7 +7,7 @@ public class Wukong {
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the game Wukong\nPlayer name: ");
+        System.out.println("Welcome to Wukong, a text-based adventure game!\nPlayer name: ");
         String playerName = scanner.nextLine();
  
         Game Wukonggame = new Game(playerName);

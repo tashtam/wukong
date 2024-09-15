@@ -60,7 +60,8 @@ public class Player {
                 updatedInventory.add(e);
             }
         }
-        
+
+        // Further explanation required
         if (!Inventory.getName().equals("stick")) {
             setWeight(weight + Inventory.getWeight()); 
             setInventory(updatedInventory); 

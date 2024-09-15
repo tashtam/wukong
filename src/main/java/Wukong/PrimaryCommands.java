@@ -13,7 +13,7 @@ public class PrimaryCommands {
         if (commandsList.contains(command)) {
             return null;
         } else {
-            return "Unknown command. Right commands are: " + String.join(" ", commandsList);
+            return "Unknown command. The correct commands are: " + String.join(" ", commandsList);
         }
     }
 

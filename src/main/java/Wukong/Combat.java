@@ -1,8 +1,7 @@
 package Wukong;
 
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Combat {
     private Player player;
@@ -32,10 +31,10 @@ public class Combat {
 
             // Check the result of the Combat
             if (!monsterIsAlive()) {
-                System.out.println("YOU WIN");
+                System.out.println("YOU WON!");
                 return true;
             } else if (!playerIsAlive()) {
-                System.out.println("YOU LOSE");
+                System.out.println("YOU LOST!");
                 return false;
             }
 
@@ -47,7 +46,7 @@ public class Combat {
     }
 
     private void initializePlayerHealth() {
-        player.setHealth(Math.min(player.getHealth(), 100));
+        player.setHealth((int) Math.min(player.getHealth(), 100));
     }
 
     private boolean playerIsAlive() {
@@ -74,20 +73,47 @@ public class Combat {
     }
 
     private void playerAttacks(Inventory selected) {
-        System.out.println("You caused damage: " + selected.getDamage());
-        Monster.setHealth(Monster.getHealth() - selected.getDamage());
+        ArrayList<String> playerAttackText = new ArrayList<>(Arrays.asList(
+                "You lunge forward and hit the monster!",
+                "You deliver a roundhouse kick to the monster's head!",
+                "You threw a strong uppercut punch, causing the monster to stumble backwards!"
+        ));
+
+        // Pick randomly from the player attack text options available
+        Random random = new Random();
+        int randomIndex = random.nextInt(playerAttackText.size());
+        String randomPlayerAttackText = playerAttackText.get(randomIndex);
+
+        // Display the randomly chosen player attack text along with the damage dealt by the player
+        System.out.println(randomPlayerAttackText + " Damage: " + selected.getDamage());
+
+        Monster.setHealth((int) Math.round(Monster.getHealth() - selected.getDamage()));
     }
 
     private void monsterAttacks() {
-        System.out.println("The monster is attacking you..."); 
+        ArrayList<String> monsterAttackText = new ArrayList<>(Arrays.asList(
+                "The monster roars and hits you in the stomach!",
+                "The monster bares its teeth before charging at you, causing you to fall over!",
+                "The monster glares menacingly and spins around to kick you!"
+        ));
+
+        // Pick randomly from the monster attack text options available
+        Random random = new Random();
+        int randomIndex = random.nextInt(monsterAttackText.size());
+        String randomMonsterAttackText = monsterAttackText.get(randomIndex);
+
         double damageMultiplier = 0.3 + Math.random() * 0.5;
-        double damage = Monster.getDamage() * damageMultiplier * highestDefense().getDefense();
-        player.setHealth(player.getHealth() - damage);
-        System.out.println("Your current HP is: " + player.getHealth());
+        double damageByMonster = Monster.getDamage() * damageMultiplier * highestDefense().getDefense();
+
+        // Display the randomly picked monster attack text along with the damage dealt by the monster
+        System.out.println(randomMonsterAttackText + " Damage: " + (int) damageByMonster);
+
+        player.setHealth((int) Math.round(player.getHealth() - damageByMonster));
+        System.out.println("Your current HP is: " + (int) player.getHealth());
     }
 
     private void displayMonsterHealth() {
-        System.out.println("Monster has " + Monster.getHealth() + " HP");
+        System.out.println("The monster's current HP is: " + (int) Monster.getHealth() + " HP");
     }
 
 

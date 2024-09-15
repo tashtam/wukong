@@ -93,7 +93,7 @@ public class Game {
                 .append("Welcome to Wukong!\n")
                 .append("Wukong is a text-based adventure game.\n")
                 .append("You can type 'guide' if you require assistance.\n")
-                .append("Your command words are 'go quit collect guide inventory drop map'")
+                .append("Your command words are 'go quit collect guide inventory drop map'.")
                 .append("\n")
                 .append(currentArea.longInfo());
 
@@ -155,7 +155,7 @@ public class Game {
             System.out.println(command);
             goArea(command);
         } catch (NullPointerException e) {
-            System.out.println("There's no Gate!");
+            System.out.println("There is no gate here!");
         }
     }
 
@@ -163,24 +163,25 @@ public class Game {
 
     private void CollectCommand() {
         if (!currentArea.InventoryExists()) {
-            System.out.println("There are no items to collect");
+            System.out.println("There are no items to collect.");
             return;
         }
 
         ArrayList<Inventory> Inventories = currentArea.getInventories();
         if (Inventories.size() > 1) {
-            System.out.println("There are more than 1 item, which one do you collect?");
+            System.out.println("Multiple items found. Which one would you like to collect?");
             Inventories.forEach(Inventory -> System.out.println(Inventory.getName()));
             String InventoryChosen = keyBoard.nextLine();
             Inventory Inventory = findInventoryByName(Inventories, InventoryChosen);
 
             while (Inventory == null) {
-                System.out.println("Choose one again");
+                System.out.println("Choose an item.");
                 Inventories.forEach(System.out::println);
                 InventoryChosen = keyBoard.nextLine();
                 Inventory = findInventoryByName(Inventories, InventoryChosen);
             }
 
+            // Further explanation needed
             if (player.addInventory(Inventory)) {
                 currentArea.removeInventory(Inventory);
                 System.out.println("item added successfully");
@@ -209,32 +210,33 @@ public class Game {
         return null;
     }
 
+    // Further explanation needed
     private void DropCommand(Command command) {
         if (command.hasAdditionalCommand()) {
             Inventory selectedInventory = player.checkInventories(command.getAdditionalCommand());
             if (selectedInventory == null) {
-                System.out.println("Item not found. Please check if it was spelled correctly");
+                System.out.println("Item not found. Please check if it was spelled correctly.");
             } else {
                 player.dropInventory(selectedInventory);
                 currentArea.addInventory(selectedInventory);
-                System.out.println("Inventory dropped successfully");
+                System.out.println("Inventory dropped successfully!"); //Does this refer to dropping an item?
             }
         } else {
-            System.out.println("What do you want to drop specifically?");
+            System.out.println("Which item would you like to drop?");
             player.listInventories();
         }
     }
 
 
     private void Guide() {
-        System.out.println("tips\n\nYour command words are:\n" + parser.showCommands());
+        System.out.println("Tips\n\nYour command words are:\n" + parser.showCommands());
     }
 
 
 
     private void goArea(Command command) {
         if (!command.hasAdditionalCommand()) {
-            System.out.println("Go where?");
+            System.out.println("Where would you like to go?");
             return;
         }
 
@@ -243,7 +245,7 @@ public class Game {
         Gate Gate = currentArea.getExits().get(direction);
 
         if (nextArea == null) {
-            System.out.println("No Gate here!");
+            System.out.println("There is no gate here!");
             return;
         }
 
@@ -262,8 +264,8 @@ public class Game {
                 switchAreas(nextArea);
             }
         } else {
-            System.out.println("You need a key to pass");
-            System.out.println("Here is your Inventory: ");
+            System.out.println("You need a key to pass.");
+            System.out.println("Inventory: ");
             player.listInventories();
 
             String selectedInventory = keyBoard.nextLine();
@@ -272,7 +274,7 @@ public class Game {
             if (keySelected != null && !lock.Unlock(keySelected)) {
                 switchAreas(nextArea);
             } else {
-                System.out.println("Wrong key");
+                System.out.println("Wrong key!");
             }
         }
     }
@@ -293,12 +295,12 @@ public class Game {
         }
         
         if (currentArea.MonsterExists()) {
-            System.out.println("you've encountered " + currentArea.getMonster().getName() + ". You have to Combat.");
+            System.out.println("You've encountered " + currentArea.getMonster().getName() + ". You have to defeat this monster to proceed.");
        
             if (new Combat(currentArea.getMonster(), player, keyBoard).Combat()) {
           
                 currentArea.addInventory(currentArea.getMonster().getTreasure());
-                System.out.println("\nGather your treasure from the Monster with the 'collect' command.");
+                System.out.println("\nGather your treasure from the monster using the 'collect' command.");
                 currentArea.removeMonster();  
             } else {
                 System.exit(0);
