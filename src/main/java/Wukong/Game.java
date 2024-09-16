@@ -17,7 +17,7 @@ public class Game {
     private Inventory Key1, Key2;
     private Area lastArea;
     private Scanner keyBoard = new Scanner(System.in);
-    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple;
+    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple,SpiderCave, LionCamelRidge, GreenCloudMountain;
     private Parser parser;
 
     public Game(String name) {
@@ -44,6 +44,10 @@ public class Game {
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
         FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
+        SpiderCave = new Area("Spider Cave", "SpiderCave");
+        LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
+        GreenCloudMountain = new Area("Green Cloud Mountain", "GreenCloudMountain");
+
     }
 
     private void initGates() {
@@ -54,7 +58,10 @@ public class Game {
                 new Gate(FlamingMountain, Cave, new Lock(new Q2(), keyBoard)),
                 new Gate(MountFangcun, Cave, new Lock(new Q3(), keyBoard)),
                 new Gate(MountFangcun, WuzhuangTemple, new Lock(Key2)),
-                new Gate(WuzhuangTemple, LeiyinTemple, new Lock())
+                new Gate(WuzhuangTemple, LeiyinTemple, new Lock()),
+                new Gate(WuzhuangTemple, SpiderCave, new Lock()),
+                new Gate(SpiderCave, LionCamelRidge, new Lock()),
+                new Gate(LeiyinTemple, GreenCloudMountain, new Lock())
         };
 
         HuaguoMount.setExits(gates[0], null, gates[2], null);
@@ -63,8 +70,11 @@ public class Game {
         MountFangcun.setExits(gates[2], gates[4], gates[5], null);
         FlamingMountain.setExits(null, null, null, gates[3]);
         Cave.setExits(null, gates[3], null, gates[4]);
-        WuzhuangTemple.setExits(gates[5], null, gates[6], null);
-        LeiyinTemple.setExits(gates[6], null, null, null);
+        WuzhuangTemple.setExits(gates[5], gates[7], gates[6], null);
+        LeiyinTemple.setExits(gates[6], gates[9], null, null);
+        SpiderCave.setExits(null, gates[8], null, gates[7]);
+        LionCamelRidge.setExits(null, null, null, gates[8]);
+        GreenCloudMountain.setExits(null, null, null, gates[9]);
     }
 
 
