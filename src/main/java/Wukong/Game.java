@@ -38,7 +38,7 @@ public class Game {
         Monster BullKing = new Monster("Bull_King", 100, 50, Key2);
         Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, armor);
         Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 200, 90, feather);
-
+        Monster SpiderDemon = new Monster("Spider Demon", 90, 30, Key3);
         HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
         Heaven = new Area("Heavenly Palace", Key1, "Heaven");
         Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave");
@@ -47,7 +47,7 @@ public class Game {
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
         FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
-        SpiderCave = new Area("Spider Cave", Key3,"SpiderCave");
+        SpiderCave = new Area("Spider Cave", SpiderDemon,"SpiderCave");
         LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
         GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng,"GreenCloudMountain");
 
