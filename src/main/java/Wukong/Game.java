@@ -34,8 +34,10 @@ public class Game {
         Key3 = new Inventory("Golden Feather", "key3", 1, 0, 1);
         Inventory goldenCudgel = new Inventory("golden cudgel", "golden_cudgel", 1, 50, 1);
         Inventory armor = new Inventory("Cicada Wing armor", "armor", 1, 0, 0.5);
+        Inventory feather = new Inventory("Feather", "feather", 1, 60, 0.4);
         Monster BullKing = new Monster("Bull_King", 100, 50, Key2);
         Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, armor);
+        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 200, 90, feather);
 
         HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
         Heaven = new Area("Heavenly Palace", Key1, "Heaven");
@@ -47,7 +49,7 @@ public class Game {
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
         SpiderCave = new Area("Spider Cave", Key3,"SpiderCave");
         LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
-        GreenCloudMountain = new Area("Green Cloud Mountain", "GreenCloudMountain");
+        GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng,"GreenCloudMountain");
 
     }
 
