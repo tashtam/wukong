@@ -14,7 +14,7 @@ public class Game {
 
     private Player player;
     private Area currentArea;
-    private Inventory Key1, Key2;
+    private Inventory Key1, Key2, Key3;
     private Area lastArea;
     private Scanner keyBoard = new Scanner(System.in);
     private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple,SpiderCave, LionCamelRidge, GreenCloudMountain;
@@ -31,6 +31,7 @@ public class Game {
     private void initAreas() {
         Key1 = new Inventory("Golden Hoop", "key1", 1, 0, 1);
         Key2 = new Inventory("Bajiao Fan", "key2", 1, 0, 1);
+        Key3 = new Inventory("Golden Feather", "key3", 1, 0, 1);
         Inventory goldenCudgel = new Inventory("golden cudgel", "golden_cudgel", 1, 50, 1);
         Inventory armor = new Inventory("Cicada Wing armor", "armor", 1, 0, 0.5);
         Monster BullKing = new Monster("Bull_King", 100, 50, Key2);
@@ -44,7 +45,7 @@ public class Game {
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
         FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
-        SpiderCave = new Area("Spider Cave", "SpiderCave");
+        SpiderCave = new Area("Spider Cave", Key3,"SpiderCave");
         LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
         GreenCloudMountain = new Area("Green Cloud Mountain", "GreenCloudMountain");
 
@@ -60,7 +61,7 @@ public class Game {
                 new Gate(MountFangcun, WuzhuangTemple, new Lock(Key2)),
                 new Gate(WuzhuangTemple, LeiyinTemple, new Lock()),
                 new Gate(WuzhuangTemple, SpiderCave, new Lock()),
-                new Gate(SpiderCave, LionCamelRidge, new Lock()),
+                new Gate(SpiderCave, LionCamelRidge, new Lock(Key3)),
                 new Gate(LeiyinTemple, GreenCloudMountain, new Lock())
         };
 
