@@ -3,6 +3,10 @@ package Wukong;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The Area class represents a location in the game with information about its surroundings,
+ * possible exits, contained items, and any monsters present.
+ */
 public class Area {
 
     private String info;
@@ -10,7 +14,15 @@ public class Area {
     private HashMap<String, Gate> exits;
     private String mapName;
     private ArrayList<Inventory> inventories;
-
+    
+    /**
+     * Constructs an Area with specified information, inventory, monster, and map name.
+     *
+     * @param info        Description of the area.
+     * @param inventory   An inventory item present in the area, can be null.
+     * @param monster     A monster present in the area, can be null.
+     * @param mapName     Name of the map this area belongs to.
+     */
     public Area(String info, Inventory inventory, Monster monster, String mapName) {
         this.info = info;
         this.monster = monster;
@@ -46,6 +58,12 @@ public class Area {
         this.monster = monster;
     }
 
+
+    /**
+     * Sets the exits for the area with specified gates.
+     *
+     * @param gates The gates representing the exits.
+     */
     public void setExits(Gate... gates) {
         String[] directions = {"north", "east", "south", "west"};
         for (int i = 0; i < gates.length; i++) {
