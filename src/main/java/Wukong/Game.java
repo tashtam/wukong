@@ -313,7 +313,7 @@ public class Game {
         }
 
         // Check if the time challenge is active and if the player failed to leave the "Cave"(Time Challenge)
-        if (isTimeChallengeActive && currentArea.shortInfo().equals("Mountainside Cave")) {
+        if (isTimeChallengeActive && currentArea.shortInfo().equals("Cave")) {
             long currentTime = System.currentTimeMillis();
             if ((currentTime - challengeStartTime) >= challengeDuration) {
                 System.out.println("Time's up! You failed the Mountainside Cave challenge. Returning to the Mountainside Cave...");
@@ -329,7 +329,7 @@ public class Game {
         } else {
             switchAreas(nextArea);
             // If the player successfully leaves the "Cave," end the time challenge(Time Challenge)
-            if (!currentArea.shortInfo().equals("Mountainside Cave")) {
+            if (!currentArea.shortInfo().equals("Cave")) {
                 isTimeChallengeActive = false;
             }
         }
