@@ -47,7 +47,7 @@ public class Game {
 
         HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
         Heaven = new Area("Heavenly Palace", Key1, "Heaven");
-        Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave");
+        Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave", true);//Time Challeng(Ziying)
         MountFangcun = new Area("Mount Fangcun of the Scriptures", "MountFangcun");
         WuzhuangTemple = new Area("Taoist WuzhuangTemple", "WuzhuangTemple");
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");

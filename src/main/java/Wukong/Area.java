@@ -14,6 +14,9 @@ public class Area {
     private HashMap<String, Gate> exits;
     private String mapName;
     private ArrayList<Inventory> inventories;
+
+    private boolean hasTimeChallenge;
+    private TimeChallenge timeChallenge;
     
     /**
      * Constructs an Area with specified information, inventory, monster, and map name.
@@ -44,6 +47,16 @@ public class Area {
 
     public Area(String info, String mapName) {
         this(info, null, null, mapName);
+    }
+
+    //Modify the constructor to initialize the time challenge(Ziying)
+    public Area(String info, Monster monster, String mapName, boolean hasTimeChallenge) {
+        this.mapName = mapName;
+        this.info = info;
+        this.hasTimeChallenge = hasTimeChallenge;
+        if (hasTimeChallenge) {
+            timeChallenge = new TimeChallenge(60000); // 60 seconds time challenge
+        }
     }
 
     public String getMapName() {
@@ -119,5 +132,19 @@ public class Area {
 
     public HashMap<String, Gate> getExits() {
         return exits;
+    }
+
+
+    //Add methods to start the time challenge and check its status(Ziying)
+    public void startTimeChallenge() {
+        if (hasTimeChallenge && timeChallenge != null) {
+            timeChallenge.start();
+        }
+    }
+    public boolean isTimeChallengeOver() {
+        return hasTimeChallenge && timeChallenge != null && timeChallenge.isTimeOver();
+    }
+    public boolean hasTimeChallenge() {
+        return hasTimeChallenge;
     }
 }
