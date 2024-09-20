@@ -2,6 +2,8 @@ package Wukong;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Handles the combat mechanics between a player and a monster.
@@ -15,6 +17,8 @@ public class Combat {
     private Player player;
     private Monster Monster;
     private Scanner keyBoard;
+
+    private static final long TIMEOUT = 10000;
 
     /**
      * Constructs a new Combat instance.
@@ -103,18 +107,49 @@ public class Combat {
      * @return The selected Inventory item.
      */
     private Inventory selectInventory() {
-        Inventory selected = null;
-        while (selected == null) {
-            System.out.println("Select your item: ");
-            player.listInventories();
-            String selectedInventory = keyBoard.nextLine();
-            selected = player.checkInventories(selectedInventory);
+        long startTime = System.currentTimeMillis();
+        AtomicReference<Inventory> selected = new AtomicReference<>(null);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<?> future = executor.submit(() -> {
+            Scanner scanner = new Scanner(System.in); // Ensure a new Scanner instance is created in the thread
+            while (selected.get() == null) {
+                // Check if the time limit is reached
+                if (System.currentTimeMillis() - startTime > TIMEOUT) {
+                    System.out.println("Time's up! Automatically selecting 'stick'.");
+                    selected.set(player.checkInventories("stick"));
+                    break;
+                }
 
-            if (selected == null) {
-                System.out.println("Item not found. Please choose another one.");
+                System.out.println("Select your item: ");
+                player.listInventories(); // Display the player's inventory list
+
+                // Read user input
+                if (scanner.hasNextLine()) {
+                    String selectedInventory = scanner.nextLine(); // Get the user's input
+                    selected.set(player.checkInventories(selectedInventory)); // Check the selected item
+
+                    if (selected.get() == null) {
+                        System.out.println("Item not found. Please select again."); // Notify the user if the selected item doesn't exist
+                    }
+                }
             }
+        });
+
+        try {
+            future.get(TIMEOUT, TimeUnit.MILLISECONDS); // Wait for user selection or timeout
+        } catch (TimeoutException e) {
+            // Handle timeout
+            System.out.println("Timeout: using automatic selection.");
+            if (selected.get() == null) {
+                selected.set(player.checkInventories("stick"));
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        } finally {
+            executor.shutdown();
         }
-        return selected;
+
+        return selected.get(); // Return the selected item
     }
 
     /**

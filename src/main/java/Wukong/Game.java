@@ -25,10 +25,6 @@ public class Game {
     private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple;
     private Parser parser;
 
-    //TimeChallenge
-    private long challengeStartTime;
-    private long challengeDuration = 10000; // 10 seconds for the time challenge
-    private boolean isTimeChallengeActive = false;
 
     public Game(String name) {
         parser = new Parser(keyBoard);
@@ -312,26 +308,12 @@ public class Game {
             return;
         }
 
-        // Check if the time challenge is active and if the player failed to leave the "Cave"(Time Challenge)
-        if (isTimeChallengeActive && currentArea.shortInfo().equals("Cave")) {
-            long currentTime = System.currentTimeMillis();
-            if ((currentTime - challengeStartTime) >= challengeDuration) {
-                System.out.println("Time's up! You failed the Mountainside Cave challenge. Returning to the Mountainside Cave...");
-                switchAreas(Cave); // Force the player back to the "Cave"
-                return;
-            }
-        }
-
         Lock lock = Gate.getLock();
 
         if (lock.isLocked()) {
             handleLockedGate(lock, nextArea);
         } else {
             switchAreas(nextArea);
-            // If the player successfully leaves the "Cave," end the time challenge(Time Challenge)
-            if (!currentArea.shortInfo().equals("Cave")) {
-                isTimeChallengeActive = false;
-            }
         }
     }
 
@@ -403,13 +385,6 @@ public class Game {
             }
         } catch (IOException e) {
             System.out.println("Error reading map: " + e.getMessage());
-        }
-
-        // Start the time challenge if the player enters the "Cave"(Time Challenge)
-        if (currentArea.shortInfo().equals("Cave")) {
-            isTimeChallengeActive = true;
-            challengeStartTime = System.currentTimeMillis();
-            System.out.println("You have entered the Cave. You must leave within 60 seconds or start over!");
         }
 
 
