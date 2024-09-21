@@ -19,10 +19,10 @@ public class Game {
 
     private Player player;
     private Area currentArea;
-    private Inventory Key1, Key2;
+    private Inventory Key1, Key2, Key3, Key4;
     private Area lastArea;
     private Scanner keyBoard = new Scanner(System.in);
-    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple;
+    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple,SpiderCave, LionCamelRidge, GreenCloudMountain;
     private Parser parser;
 
 
@@ -41,11 +41,15 @@ public class Game {
     private void initAreas() {
         Key1 = new Inventory("Golden Hoop", "key1", 1, 0, 1);
         Key2 = new Inventory("Bajiao Fan", "key2", 1, 0, 1);
+        Key3 = new Inventory("Golden Feather", "key3", 1, 0, 1);
+        Key4 = new Inventory("Magic Pestle","key4", 1, 0, 1);
         Inventory goldenCudgel = new Inventory("golden cudgel", "golden_cudgel", 1, 50, 1);
         Inventory armor = new Inventory("Cicada Wing armor", "armor", 1, 0, 0.5);
+        Inventory feather = new Inventory("Feather", "feather", 1, 60, 0.4);
         Monster BullKing = new Monster("Bull_King", 100, 50, Key2);
         Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, armor);
-
+        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 100, 30, Key4);
+        Monster SpiderDemon = new Monster("Spider Demon", 90, 30, Key3);
         HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
         Heaven = new Area("Heavenly Palace", Key1, "Heaven");
         Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave");
@@ -54,6 +58,10 @@ public class Game {
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
         FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
+        SpiderCave = new Area("Spider Cave", SpiderDemon,"SpiderCave");
+        LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
+        GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng,"GreenCloudMountain");
+
     }
     
     /**
@@ -67,7 +75,10 @@ public class Game {
                 new Gate(FlamingMountain, Cave, new Lock(new Q2(this::returnToMap), keyBoard)),
                 new Gate(MountFangcun, Cave, new Lock(new Q3(this::returnToMap), keyBoard)),
                 new Gate(MountFangcun, WuzhuangTemple, new Lock(Key2)),
-                new Gate(WuzhuangTemple, LeiyinTemple, new Lock())
+                new Gate(WuzhuangTemple, LeiyinTemple, new Lock(Key4)),
+                new Gate(WuzhuangTemple, SpiderCave, new Lock()),
+                new Gate(SpiderCave, LionCamelRidge, new Lock(Key3)),
+                new Gate(LionCamelRidge, GreenCloudMountain, new Lock())
         };
 
         HuaguoMount.setExits(gates[0], null, gates[2], null);
@@ -76,8 +87,11 @@ public class Game {
         MountFangcun.setExits(gates[2], gates[4], gates[5], null);
         FlamingMountain.setExits(null, null, null, gates[3]);
         Cave.setExits(null, gates[3], null, gates[4]);
-        WuzhuangTemple.setExits(gates[5], null, gates[6], null);
+        WuzhuangTemple.setExits(gates[5], gates[7], gates[6], null);
         LeiyinTemple.setExits(gates[6], null, null, null);
+        SpiderCave.setExits(null, gates[8], null, gates[7]);
+        LionCamelRidge.setExits(null, gates[9], null, gates[8]);
+        GreenCloudMountain.setExits(null, null, null, gates[9]);
     }
 
 
