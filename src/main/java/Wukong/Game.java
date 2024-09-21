@@ -25,6 +25,7 @@ public class Game {
     private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple;
     private Parser parser;
 
+
     public Game(String name) {
         parser = new Parser(keyBoard);
         player = new Player(100, new ArrayList<>(), name);
@@ -385,7 +386,8 @@ public class Game {
         } catch (IOException e) {
             System.out.println("Error reading map: " + e.getMessage());
         }
-        
+
+
         if (currentArea.MonsterExists()) {
             System.out.println("you've encountered " + currentArea.getMonster().getName() + ". You have to Combat.");
        

@@ -14,6 +14,8 @@ public class Area {
     private HashMap<String, Gate> exits;
     private String mapName;
     private ArrayList<Inventory> inventories;
+
+
     
     /**
      * Constructs an Area with specified information, inventory, monster, and map name.
@@ -45,6 +47,7 @@ public class Area {
     public Area(String info, String mapName) {
         this(info, null, null, mapName);
     }
+
 
     public String getMapName() {
         return mapName;
@@ -120,4 +123,6 @@ public class Area {
     public HashMap<String, Gate> getExits() {
         return exits;
     }
+
+
 }
