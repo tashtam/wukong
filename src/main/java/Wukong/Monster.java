@@ -1,12 +1,23 @@
 package Wukong;
 
-
+/**
+ * This class represents a Monster with a name, health, damage, and an optional treasure.
+ */
 public class Monster {
     private String name;
     private double health;
     private double damage;
     private Inventory treasure;
 
+
+    /**
+     * Constructs a Monster with the specified attributes.
+     *
+     * @param name The name of the monster.
+     * @param health The health points of the monster.
+     * @param damage The damage that the monster can deal.
+     * @param treasure The treasure (inventory item) the monster holds, if any.
+     */
     public Monster(String name, double health, double damage, Inventory treasure) {
         this.name = name;
         this.health = health;

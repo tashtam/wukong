@@ -9,16 +9,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * Represents the main game engine for the text-based adventure game "Wukong".
+ * It manages the game state, player actions, and transitions between different areas.
+ *
+ * @author
+ */
 public class Game {
 
     private Player player;
     private Area currentArea;
-    private Inventory Key1, Key2;
+    private Inventory Key1, Key2, Key3, Key4;
     private Area lastArea;
     private Scanner keyBoard = new Scanner(System.in);
-    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple;
+    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple,SpiderCave, LionCamelRidge, GreenCloudMountain;
     private Parser parser;
+
 
     public Game(String name) {
         parser = new Parser(keyBoard);
@@ -28,14 +34,22 @@ public class Game {
         currentArea = HuaguoMount;
     }
 
+    /**
+     * Initializes all areas in the game.
+     */
+
     private void initAreas() {
         Key1 = new Inventory("Golden Hoop", "key1", 1, 0, 1);
         Key2 = new Inventory("Bajiao Fan", "key2", 1, 0, 1);
+        Key3 = new Inventory("Golden Feather", "key3", 1, 0, 1);
+        Key4 = new Inventory("Magic Pestle","key4", 1, 0, 1);
         Inventory goldenCudgel = new Inventory("golden cudgel", "golden_cudgel", 1, 50, 1);
         Inventory armor = new Inventory("Cicada Wing armor", "armor", 1, 0, 0.5);
+        Inventory feather = new Inventory("Feather", "feather", 1, 60, 0.4);
         Monster BullKing = new Monster("Bull_King", 100, 50, Key2);
         Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, armor);
-
+        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 100, 30, Key4);
+        Monster SpiderDemon = new Monster("Spider Demon", 90, 30, Key3);
         HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
         Heaven = new Area("Heavenly Palace", Key1, "Heaven");
         Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave");
@@ -44,17 +58,27 @@ public class Game {
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
         FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
+        SpiderCave = new Area("Spider Cave", SpiderDemon,"SpiderCave");
+        LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
+        GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng,"GreenCloudMountain");
+
     }
 
+    /**
+     * Initializes all gates connecting different areas in the game.
+     */
     private void initGates() {
         Gate[] gates = {
-                new Gate(HuaguoMount, DragonPalace, new Lock(new Q1(), keyBoard)),
+                new Gate(HuaguoMount, DragonPalace, new Lock(new Q1(this::returnToMap), keyBoard)),
                 new Gate(DragonPalace, Heaven, new Lock()),
                 new Gate(HuaguoMount, MountFangcun, new Lock(Key1)),
-                new Gate(FlamingMountain, Cave, new Lock(new Q2(), keyBoard)),
-                new Gate(MountFangcun, Cave, new Lock(new Q3(), keyBoard)),
+                new Gate(FlamingMountain, Cave, new Lock(new Q2(this::returnToMap), keyBoard)),
+                new Gate(MountFangcun, Cave, new Lock(new Q3(this::returnToMap), keyBoard)),
                 new Gate(MountFangcun, WuzhuangTemple, new Lock(Key2)),
-                new Gate(WuzhuangTemple, LeiyinTemple, new Lock())
+                new Gate(WuzhuangTemple, LeiyinTemple, new Lock(Key4)),
+                new Gate(WuzhuangTemple, SpiderCave, new Lock()),
+                new Gate(SpiderCave, LionCamelRidge, new Lock(Key3)),
+                new Gate(LionCamelRidge, GreenCloudMountain, new Lock())
         };
 
         HuaguoMount.setExits(gates[0], null, gates[2], null);
@@ -63,13 +87,19 @@ public class Game {
         MountFangcun.setExits(gates[2], gates[4], gates[5], null);
         FlamingMountain.setExits(null, null, null, gates[3]);
         Cave.setExits(null, gates[3], null, gates[4]);
-        WuzhuangTemple.setExits(gates[5], null, gates[6], null);
+        WuzhuangTemple.setExits(gates[5], gates[7], gates[6], null);
         LeiyinTemple.setExits(gates[6], null, null, null);
+        SpiderCave.setExits(null, gates[8], null, gates[7]);
+        LionCamelRidge.setExits(null, gates[9], null, gates[8]);
+        GreenCloudMountain.setExits(null, null, null, gates[9]);
     }
 
 
-
-
+    /**
+     * Starts the game and handles the game loop.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     public void play() throws IOException {
         Welcome();
         Map.map(currentArea.getMapName());
@@ -80,13 +110,23 @@ public class Game {
         keyBoard.close();
     }
 
+
+    /**
+     * Processes user commands in a loop until the game is exited.
+     *
+     * @throws IOException if an I/O error occurs
+     */
+
     private void processCommands() throws IOException {
         Command command = parser.getCommand();
         if (!processCommand(command)) {
             processCommands();
         }
     }
-    
+
+    /**
+     * Displays the welcome message when the game starts.
+     */
     private void Welcome() {
         StringBuilder welcomeMessage = new StringBuilder()
                 .append("\n")
@@ -101,6 +141,13 @@ public class Game {
     }
 
 
+    /**
+     * Processes a user command.
+     *
+     * @param command the command to process
+     * @return true if the game should be exited, false otherwise
+     * @throws IOException if an I/O error occurs
+     */
     private boolean processCommand(Command command) throws IOException {
         if (command.isUnknown()) {
             System.out.println("Sorry, I don't understand that...");
@@ -150,6 +197,12 @@ public class Game {
         return false;
     }
 
+
+    /**
+     * Handles the "go" command, allowing the player to move to a different area.
+     *
+     * @param command the command to process
+     */
     private void GoCommand(Command command) {
         try {
             System.out.println(command);
@@ -160,7 +213,9 @@ public class Game {
     }
 
 
-
+    /**
+     * Handles the "collect" command, allowing the player to collect items from the current area.
+     */
     private void CollectCommand() {
         if (!currentArea.InventoryExists()) {
             System.out.println("There are no items to collect.");
@@ -201,6 +256,14 @@ public class Game {
         }
     }
 
+
+    /**
+     * Finds an inventory item by its name.
+     *
+     * @param Inventories the list of inventories to search
+     * @param name the name of the inventory item
+     * @return the inventory item if found, null otherwise
+     */
     private Inventory findInventoryByName(ArrayList<Inventory> Inventories, String name) {
         for (Inventory Inventory : Inventories) {
             if (Inventory.getName().equalsIgnoreCase(name)) {
@@ -210,6 +273,12 @@ public class Game {
         return null;
     }
 
+
+    /**
+     * Handles the "drop" command, allowing the player to drop an item from their inventory.
+     *
+     * @param command the command to process
+     */
     // Further explanation needed
     private void DropCommand(Command command) {
         if (command.hasAdditionalCommand()) {
@@ -227,13 +296,19 @@ public class Game {
         }
     }
 
-
+    /**
+     * Displays the guide for the game.
+     */
     private void Guide() {
         System.out.println("Tips\n\nYour command words are:\n" + parser.showCommands());
     }
 
 
-
+    /**
+     * Handles movement between areas.
+     *
+     * @param command the command to process
+     */
     private void goArea(Command command) {
         if (!command.hasAdditionalCommand()) {
             System.out.println("Where would you like to go?");
@@ -258,6 +333,14 @@ public class Game {
         }
     }
 
+
+    /**
+     * Handles the logic for interacting with a locked gate, including
+     * processing the quiz or key required to unlock the gate.
+     *
+     * @param lock     The lock object associated with the gate.
+     * @param nextArea The area to switch to if the gate is successfully unlocked.
+     */
     private void handleLockedGate(Lock lock, Area nextArea) {
         if (lock.getQuiz() != null) {
             if (!lock.Unlock(null)) {
@@ -279,6 +362,32 @@ public class Game {
         }
     }
 
+
+    /**
+     * Returns to the map view from a quiz-based lock. If there is an
+     * error or no map is available, an appropriate message is displayed.
+     */
+    private void returnToMap() {
+        try {
+            if (currentArea.getMapName() != null) {
+                Map.map(currentArea.getMapName());
+            } else {
+                System.out.println("No map available.");
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading map: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * Switches to a new area and updates the current area. Displays
+     * information about the new area and handles potential encounters
+     * with monsters. If a monster is encountered and defeated, updates
+     * the area with the monster's treasure.
+     *
+     * @param nextArea The area to switch to.
+     */
     private void switchAreas(Area nextArea) {
         lastArea = currentArea;
         currentArea = nextArea;
@@ -293,7 +402,8 @@ public class Game {
         } catch (IOException e) {
             System.out.println("Error reading map: " + e.getMessage());
         }
-        
+
+
         if (currentArea.MonsterExists()) {
             System.out.println("You've encountered " + currentArea.getMonster().getName() + ". You have to defeat this monster to proceed.");
        

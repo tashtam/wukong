@@ -1,6 +1,9 @@
 package Wukong;
 
-
+/**
+ * This class represents an inventory item in the game.
+ * Each item has information such as its name, weight, damage, and defense properties.
+ */
 public class Inventory {
     private String info;
     private String name;
