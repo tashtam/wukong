@@ -109,47 +109,42 @@ public class Combat {
     private Inventory selectInventory() {
         long startTime = System.currentTimeMillis();
         AtomicReference<Inventory> selected = new AtomicReference<>(null);
+        AtomicReference<Boolean> stopFlag = new AtomicReference<>(false);
         ExecutorService executor = Executors.newSingleThreadExecutor();
+
         Future<?> future = executor.submit(() -> {
-            Scanner scanner = new Scanner(System.in); // Ensure a new Scanner instance is created in the thread
-            while (selected.get() == null) {
-                // Check if the time limit is reached
-                if (System.currentTimeMillis() - startTime > TIMEOUT) {
-                    System.out.println("Time's up! Automatically selecting 'stick'.");
-                    selected.set(player.checkInventories("stick"));
-                    break;
-                }
-
+            Scanner scanner = new Scanner(System.in);
+            while (!stopFlag.get() && selected.get() == null) {
                 System.out.println("Select your item: ");
-                player.listInventories(); // Display the player's inventory list
+                player.listInventories();
 
-                // Read user input
                 if (scanner.hasNextLine()) {
-                    String selectedInventory = scanner.nextLine(); // Get the user's input
-                    selected.set(player.checkInventories(selectedInventory)); // Check the selected item
+                    String selectedInventory = scanner.nextLine();
+                    selected.set(player.checkInventories(selectedInventory));
 
-                    if (selected.get() == null) {
-                        System.out.println("Item not found. Please select again."); // Notify the user if the selected item doesn't exist
+                    if (selected.get() == null && !stopFlag.get()) {
+                        System.out.println("Item not found. Please select again.");
                     }
                 }
             }
         });
 
         try {
-            future.get(TIMEOUT, TimeUnit.MILLISECONDS); // Wait for user selection or timeout
+            future.get(TIMEOUT, TimeUnit.MILLISECONDS);
         } catch (TimeoutException e) {
-            // Handle timeout
+
             System.out.println("Timeout: using automatic selection.");
             if (selected.get() == null) {
                 selected.set(player.checkInventories("stick"));
             }
+            stopFlag.set(true);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         } finally {
-            executor.shutdown();
+            executor.shutdownNow();
         }
 
-        return selected.get(); // Return the selected item
+        return selected.get();
     }
 
     /**

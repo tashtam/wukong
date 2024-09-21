@@ -1,20 +1,20 @@
 package Wukong;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class PlayerTest {
+public class PlayerTest {
 
     private Player player;
     private Inventory stick;
     private Inventory sword;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         // Setup inventory items
         stick = new Inventory("Your own stick", "stick", 0, 10, 1);
         sword = new Inventory("Shiny Sword", "sword", 15, 5, 2);
@@ -26,7 +26,7 @@ class PlayerTest {
     }
 
     @Test
-    void testAddInventory() {
+    public void testAddInventory() {
         // Add a new inventory item to the player
         boolean result = player.addInventory(sword);
 
@@ -37,7 +37,7 @@ class PlayerTest {
     }
 
     @Test
-    void testAddInventoryOverweight() {
+    public void testAddInventoryOverweight() {
         // Set player's weight limit lower to test overweight condition
         player.setWeight(0);
 
@@ -50,7 +50,7 @@ class PlayerTest {
     }
 
     @Test
-    void testDropInventory() {
+    public void testDropInventory() {
         // Drop an item from inventory
         player.dropInventory(sword);
 
@@ -60,7 +60,7 @@ class PlayerTest {
     }
 
     @Test
-    void testDropStick() {
+    public void testDropStick() {
         // Try to drop the stick item
         player.dropInventory(stick);
 
@@ -70,7 +70,7 @@ class PlayerTest {
     }
 
     @Test
-    void testCheckInventories() {
+    public void testCheckInventories() {
         // Check for an item in the inventory
         Inventory found = player.checkInventories("stick");
 
