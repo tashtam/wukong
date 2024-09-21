@@ -1,7 +1,6 @@
 package Wukong;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -9,8 +8,9 @@ import java.util.concurrent.atomic.AtomicReference;
  * Handles the combat mechanics between a player and a monster.
  * The combat involves selecting items from the player's inventory,
  * attacking the monster, and receiving counter-attacks from the monster.
- * 
- * @author
+ *
+ * @author Tianfa Zhu
+ * @author Tashia Tamara
  */
 
 public class Combat {
@@ -23,8 +23,8 @@ public class Combat {
     /**
      * Constructs a new Combat instance.
      *
-     * @param Monster The monster to be fought in combat.
-     * @param player  The player engaging in combat.
+     * @param Monster  The monster to be fought in combat.
+     * @param player   The player engaging in combat.
      * @param keyBoard The Scanner object for user input.
      */
     public Combat(Monster Monster, Player player, Scanner keyBoard) {
@@ -63,10 +63,10 @@ public class Combat {
 
             // Check the result of the combat
             if (!monsterIsAlive()) {
-                System.out.println("YOU WIN");
+                System.out.println("YOU WON!");
                 return true;
             } else if (!playerIsAlive()) {
-                System.out.println("YOU LOSE");
+                System.out.println("YOU LOST!");
                 return false;
             }
         }
@@ -115,17 +115,21 @@ public class Combat {
             while (selected.get() == null) {
                 // Check if the time limit is reached
                 if (System.currentTimeMillis() - startTime > TIMEOUT) {
-                    System.out.println("Time's up! Automatically selecting 'stick'.");
+                    System.out.println("\nTime's up! Automatically selecting 'stick'.\n"); // Auto-start combat feature
                     selected.set(player.checkInventories("stick"));
                     break;
                 }
 
-                System.out.println("Select your item: ");
+                System.out.println(
+                        "You have 10 seconds to select an item to be used in combat." +
+                                "\nIf no item is selected, 'stick' will automatically be selected." +
+                                "\nSelect your item: ");
                 player.listInventories(); // Display the player's inventory list
 
                 // Read user input
                 if (scanner.hasNextLine()) {
                     String selectedInventory = scanner.nextLine(); // Get the user's input
+
                     selected.set(player.checkInventories(selectedInventory)); // Check the selected item
 
                     if (selected.get() == null) {
@@ -139,7 +143,7 @@ public class Combat {
             future.get(TIMEOUT, TimeUnit.MILLISECONDS); // Wait for user selection or timeout
         } catch (TimeoutException e) {
             // Handle timeout
-            System.out.println("Timeout: using automatic selection.");
+            System.out.println("\nTimeout: Automatically selecting 'stick'.\n");
             if (selected.get() == null) {
                 selected.set(player.checkInventories("stick"));
             }
@@ -158,9 +162,23 @@ public class Combat {
      * @param selected The item selected by the player for the attack.
      */
     private void playerAttacks(Inventory selected) {
-        System.out.println("You caused damage " + selected.getDamage() + " to the monster");
+
+        ArrayList<String> playerAttackText = new ArrayList<>(Arrays.asList(
+                "You lunge forward and hit the monster!",
+                "You deliver a roundhouse kick to the monster's head!",
+                "You threw a strong uppercut punch, causing the monster to stumble backwards!"
+        ));
+
+        // Pick randomly from the player attack text options available
+        Random random = new Random();
+        int randomIndex = random.nextInt(playerAttackText.size());
+        String randomPlayerAttackText = playerAttackText.get(randomIndex);
+
+        // Display the randomly chosen player attack text along with the damage dealt by the player
+        System.out.println(randomPlayerAttackText + " Damage: " + selected.getDamage());
+
         Monster.setHealth(Monster.getHealth() - selected.getDamage());
-        System.out.println("Monster has " + Monster.getHealth() + " HP");
+        System.out.println("Monster has " + Monster.getHealth() + " HP.");
     }
 
     /**
@@ -169,10 +187,25 @@ public class Combat {
      * the player's highest defense item.
      */
     private void monsterAttacks() {
-        System.out.println("The monster is attacking you...");
+
+        ArrayList<String> monsterAttackText = new ArrayList<>(Arrays.asList(
+                "The monster roars and hits you in the stomach!",
+                "The monster bares its teeth before charging at you, causing you to fall over!",
+                "The monster glares menacingly and spins around to kick you!"
+        ));
+
+        // Pick randomly from the monster attack text options available
+        Random random = new Random();
+        int randomIndex = random.nextInt(monsterAttackText.size());
+        String randomMonsterAttackText = monsterAttackText.get(randomIndex);
+
         double damageMultiplier = 0.3 + Math.random() * 0.5;
-        double damage = Monster.getDamage() * damageMultiplier * highestDefense().getDefense();
-        player.setHealth(player.getHealth() - damage);
+        double damageByMonster = Monster.getDamage() * damageMultiplier * highestDefense().getDefense();
+
+        // Display the randomly picked monster attack text along with the damage dealt by the monster
+        System.out.println(randomMonsterAttackText + " Damage: " + (int) damageByMonster);
+
+        player.setHealth(player.getHealth() - damageByMonster);
         System.out.println("Your current HP is: " + player.getHealth());
     }
 

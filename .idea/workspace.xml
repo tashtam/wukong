@@ -5,9 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d14ff2e-c341-4434-9205-8f38164e4f90" name="Changes" comment="file">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comp6120-thu16_a3_c.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Area.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Combat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Command.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Gate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Inventory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Lock.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Map.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Monster.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Parser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/PrimaryCommands.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Wukong.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Q1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Q2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Q3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Quiz.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Wukong/Combat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Wukong/Combat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Wukong/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Wukong/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Wukong/Wukong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Wukong/Wukong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/Combat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/Combat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/PrimaryCommands.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/PrimaryCommands.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/Wukong.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/Wukong.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q3.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +60,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/Dev1-branch" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -32,9 +74,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2mEh889BefTifWnPxOgcxeu3HAt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -46,13 +88,17 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Dev1-branch-additionalFeature-auto-battle",
+    "git-widget-placeholder": "Dev1-branch-combat-and-riddle-description-update",
     "last_opened_file_path": "D:/Astudy/ANU/2024S2/6120/ASS_6120/ass3_6120/newFromGit916",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -66,19 +112,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="comp6120-thu16_a3_c" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="comp6120-thu16_a3_c" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

@@ -13,7 +13,8 @@ import java.util.Scanner;
  * Represents the main game engine for the text-based adventure game "Wukong".
  * It manages the game state, player actions, and transitions between different areas.
  *
- * @author
+ * @author Tianfa Zhu
+ * @author Tashia Tamara
  */
 public class Game {
 
@@ -130,16 +131,16 @@ public class Game {
     private void Welcome() {
         StringBuilder welcomeMessage = new StringBuilder()
                 .append("\n")
-                .append("Welcome to Wukong!\n")
-                .append("Wukong is a text-based adventure game.\n")
-                .append("You can type 'guide' if you require assistance.\n")
-                .append("Your command words are 'go quit collect guide inventory drop map'.")
-                .append("\n")
+                .append("Welcome to Wukong!\n\n")
+                .append("Your command words are 'go quit collect guide inventory drop map'.\n\n")
+                .append("Type 'guide' if you require assistance.\n")
+                .append("Type 'collect' every time you enter a new location to search for items.")
+                .append("\n\n")
+                .append("Good luck!\n\n")
                 .append(currentArea.longInfo());
 
         System.out.print(welcomeMessage.toString());
     }
-
 
     /**
      * Processes a user command.
@@ -320,7 +321,7 @@ public class Game {
         Gate Gate = currentArea.getExits().get(direction);
 
         if (nextArea == null) {
-            System.out.println("There is no gate here!");
+            System.out.println("There is no gate there!");
             return;
         }
 

@@ -9,8 +9,5 @@
         <module name="comp6120-thu16_a3_c" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="comp6120-thu16_a3_c" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
