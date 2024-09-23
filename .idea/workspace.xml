@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="602aa484-64a4-4d63-b574-31223b44f393" name="Changes" comment="">
-      <changelist_data name="Tashia Tamara" email="u7754676@anu.edu.au" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="602aa484-64a4-4d63-b574-31223b44f393" name="Changes" comment="add 4 additional feature's user stories">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Activity-1-User-Stories.md" beforeDir="false" afterPath="$PROJECT_DIR$/Activity-1-User-Stories.md" afterDir="false" />
     </list>
@@ -23,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Tashia Tamara &lt;u7754676@anu.edu.au&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="Dev1-branch" />
@@ -165,6 +168,15 @@
       <option name="presentableId" value="Default" />
       <updated>1726971559062</updated>
     </task>
+    <task id="LOCAL-00001" summary="add 4 additional feature's user stories">
+      <option name="closed" value="true" />
+      <created>1727060758574</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727060758574</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +196,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Bug fixed: Extra text in combat removed; Testers added." />
     <MESSAGE value="Merge branch 'Dev1-branch-addLocations&amp;monsters' into 'Dev1-branch'&#10;&#10;Dev1 branch add locations&amp;monsters&#10;&#10;See merge request u7615711/comp6120-thu16_a3_c!4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Dev1-branch-addLocations&amp;monsters' into 'Dev1-branch'&#10;&#10;Dev1 branch add locations&amp;monsters&#10;&#10;See merge request u7615711/comp6120-thu16_a3_c!4" />
+    <MESSAGE value="add 4 additional feature's user stories" />
+    <option name="LAST_COMMIT_MESSAGE" value="add 4 additional feature's user stories" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
