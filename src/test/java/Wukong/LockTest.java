@@ -48,7 +48,7 @@ public class LockTest {
     @Test
     public void testUnlockWithCorrectQuizAnswer() {
         // Simulate user input for the correct answer
-        InputStream input = new ByteArrayInputStream("ZhuBajie\n".getBytes());
+        InputStream input = new ByteArrayInputStream("B\n".getBytes());
         scanner = new Scanner(input);
         quizLock = new Lock(quiz, scanner); // Reinitialize with simulated input
 

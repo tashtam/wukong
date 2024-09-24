@@ -26,10 +26,25 @@ public class Q2 implements Quiz {
      */
     @Override
     public boolean start(Scanner scanner) {
-        System.out.println("With nine bends in a river, I guard day and night,\n" +
-                "My waters are deadly, no living thing in sight.\n" +
-                "Only a monk with purity, can cross my waves and plight,\n" +
-                "What am I, the challenge on the monk’s holy flight?");
+        System.out.println("""
+                A rock statue of a knight stands before the gate in front of you, strong and mighty even with his eyes closed.
+                Suddenly, he opens his eyes, startling you. You reach for your wooden stick, just in case.
+                With a booming voice, he tells you that only those who can solve his riddle are granted entry through the gate.
+                He watches you with careful eyes, before giving you his riddle of the day:
+
+                'Poor people have me.
+                Rich people need me.
+                If you eat me, you will die.
+                Who am I?'
+
+                A. Poison
+                B. Nothing
+                C. Air
+                D. Time
+
+                Choose your answer by typing the corresponding letter.
+                Or, type 'quit question' to quit the riddle.""");
+
 
         solved = false;
         return Quiz(scanner);
@@ -45,15 +60,19 @@ public class Q2 implements Quiz {
     public boolean Quiz(Scanner keyBoard) {
         while (!solved) {
             String answer = keyBoard.nextLine();
-            if (answer.equals("ShaWujing")) {
+            if (answer.equals("B")) {
                 solved = true;
-                System.out.println("You solved the question");
+                System.out.println("The statue smiles approvingly, granting you passage.\n" +
+                        "'Congratulations, traveler, you solved my riddle!'");
                 break;
             } else if (answer.equals("quit question")) {
                 if (onQuit != null) onQuit.run();
                 break;
             } else {
-                System.out.println("This answer is wrong, try again");
+                System.out.println("""
+                        The statue laughs.
+                        'HA HA HA! Your answer is wrong, but I'll give you another chance, traveler.
+                        What is the correct answer?'""");
             }
         }
         return solved;
