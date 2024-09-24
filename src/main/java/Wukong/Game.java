@@ -146,7 +146,8 @@ public class Game {
                 .append("Welcome to Wukong!\n\n")
                 .append("Your command words are 'go quit collect guide inventory drop map inspect'.\n\n")
                 .append("Type 'guide' if you require assistance.\n")
-                .append("Type 'collect' every time you enter a new location to search for items.")
+                .append("Type 'collect' every time you enter a new location to search for items.\n")
+                .append("Type 'inspect' if you want more information about an item in your inventory.")
                 .append("\n\n")
                 .append("Good luck!\n\n")
                 .append(currentArea.longInfo());
