@@ -24,7 +24,7 @@ public class Player {
      * @param name The name of the player.
      */
     public Player(double health, ArrayList<Inventory> inventory, String name) {
-        Inventory stick = new Inventory("A wooden stick made of a high-quality oak.\nIt's been in your family for generations...", "Wooden Stick", 0, 10, 1);
+        Inventory stick = new Inventory("A wooden stick made of high-quality oak.\nIt's been in your family for generations...", "Wooden Stick", 0, 10, 1);
         this.health = health;
         this.inventory = inventory;
         this.name = name;

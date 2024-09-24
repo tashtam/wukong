@@ -20,10 +20,10 @@ public class Game {
 
     private Player player;
     private Area currentArea;
-    private Inventory Key1, Key2, Key3, Key4;
+    private Inventory moonKey, sunKey, lionCamelKey, diamondKey;
     private Area lastArea;
     private Scanner keyBoard = new Scanner(System.in);
-    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple,SpiderCave, LionCamelRidge, GreenCloudMountain;
+    private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple, SpiderCave, LionCamelRidge, GreenCloudMountain;
     private Parser parser;
 
 
@@ -40,29 +40,40 @@ public class Game {
      */
 
     private void initAreas() {
-        Key1 = new Inventory("A key made of silver, with the shape of a crescent moon carved into it.\n" +
+        moonKey = new Inventory("A key made of silver, with the shape of a crescent moon carved into it.\n" +
                 "Along its shaft, carved in tiny letters, are the words 'Mount Fangcun'.", "Moon Key", 1, 0, 1);
-        Key2 = new Inventory("Bajiao Fan", "key2", 1, 0, 1);
-        Key3 = new Inventory("Golden Feather", "key3", 1, 0, 1);
-        Key4 = new Inventory("Magic Pestle","key4", 1, 0, 1);
-        Inventory goldenCudgel = new Inventory("golden cudgel", "golden_cudgel", 1, 50, 1);
-        Inventory armor = new Inventory("Cicada Wing armor", "armor", 1, 0, 0.5);
-        Inventory feather = new Inventory("Feather", "feather", 1, 60, 0.4);
-        Monster BullKing = new Monster("Bull_King", 100, 50, Key2);
-        Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, armor);
-        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 100, 30, Key4);
-        Monster SpiderDemon = new Monster("Spider Demon", 90, 30, Key3);
+
+        sunKey = new Inventory("A key made of gold, with the shape of a shining sun carved into it.\n" +
+                "The words 'Wuzhuang Temple' are carved along its shaft.", "Sun Key", 1, 0, 1);
+
+        lionCamelKey = new Inventory("A bronze key with a picture of a roaring lion carved into it.\n" +
+                "When you flip the key, you find that the other side has a picture of a sleepy camel.", "Lion Camel Key", 1, 0, 1);
+
+        diamondKey = new Inventory("A diamond key that seems to gleam brightly, even under the silver moonlight.\n" +
+                "When you hold it, you feel powerful magic radiating from it. You've never felt anything like it.", "Diamond Key", 1, 0, 1);
+
+        Inventory goldenCudgel = new Inventory("A sentient golden rod that can shrink or extend itself based on its owner's needs or wishes.\n" +
+                "You have a feeling that this rod can be a useful weapon during fights.", "Golden Cudgel", 1, 50, 1);
+
+        Inventory boneArmor = new Inventory("An armor made of a strong material that reminds of you of... bones? \n" +
+                "When you put it on, the armor rattles and clacks with your every move.", "Bone Armor", 1, 0, 0.5);
+
+        Monster BullKing = new Monster("Bull_King", 100, 50, sunKey);
+        Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, boneArmor);
+        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 100, 30, diamondKey);
+        Monster SpiderDemon = new Monster("Spider Demon", 90, 30, lionCamelKey);
+
         HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
-        Heaven = new Area("Heavenly Palace", Key1, "Heaven");
+        Heaven = new Area("Heavenly Palace", moonKey, "Heaven");
         Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave");
         MountFangcun = new Area("Mount Fangcun of the Scriptures", "MountFangcun");
         WuzhuangTemple = new Area("Taoist WuzhuangTemple", "WuzhuangTemple");
         DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
         FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
         LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
-        SpiderCave = new Area("Spider Cave", SpiderDemon,"SpiderCave");
+        SpiderCave = new Area("Spider Cave", SpiderDemon, "SpiderCave");
         LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
-        GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng,"GreenCloudMountain");
+        GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng, "GreenCloudMountain");
 
     }
 
@@ -73,13 +84,13 @@ public class Game {
         Gate[] gates = {
                 new Gate(HuaguoMount, DragonPalace, new Lock(new Q1(this::returnToMap), keyBoard)),
                 new Gate(DragonPalace, Heaven, new Lock()),
-                new Gate(HuaguoMount, MountFangcun, new Lock(Key1)),
+                new Gate(HuaguoMount, MountFangcun, new Lock(moonKey)),
                 new Gate(FlamingMountain, Cave, new Lock(new Q2(this::returnToMap), keyBoard)),
                 new Gate(MountFangcun, Cave, new Lock(new Q3(this::returnToMap), keyBoard)),
-                new Gate(MountFangcun, WuzhuangTemple, new Lock(Key2)),
-                new Gate(WuzhuangTemple, LeiyinTemple, new Lock(Key4)),
+                new Gate(MountFangcun, WuzhuangTemple, new Lock(sunKey)),
+                new Gate(WuzhuangTemple, LeiyinTemple, new Lock(diamondKey)),
                 new Gate(WuzhuangTemple, SpiderCave, new Lock()),
-                new Gate(SpiderCave, LionCamelRidge, new Lock(Key3)),
+                new Gate(SpiderCave, LionCamelRidge, new Lock(lionCamelKey)),
                 new Gate(LionCamelRidge, GreenCloudMountain, new Lock())
         };
 
@@ -266,7 +277,7 @@ public class Game {
      * Finds an inventory item by its name.
      *
      * @param Inventories the list of inventories to search
-     * @param name the name of the inventory item
+     * @param name        the name of the inventory item
      * @return the inventory item if found, null otherwise
      */
     private Inventory findInventoryByName(ArrayList<Inventory> Inventories, String name) {
@@ -445,7 +456,6 @@ public class Game {
             }
         }
     }
-
 
 
 }

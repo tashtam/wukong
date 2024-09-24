@@ -174,7 +174,7 @@ public class Combat {
         if (monster.getHealth() < 0) {
             monster.setHealth(0);
         }
-        System.out.println("Monster has " + monster.getHealth() + " HP.");
+        System.out.println("Monster has " + (int) Math.round(monster.getHealth()) + " HP.");
     }
 
     /**
@@ -205,7 +205,7 @@ public class Combat {
         if (player.getHealth() < 0) {
             player.setHealth(0);
         }
-        System.out.println("Your current HP is: " + player.getHealth());
+        System.out.println("Your current HP is: " + (int) Math.round(player.getHealth()));
     }
 
     /**
