@@ -16,7 +16,7 @@ public class PlayerTest {
     @Before
     public void setUp() {
         // Setup inventory items
-        stick = new Inventory("Your own stick", "stick", 0, 10, 1);
+        stick = new Inventory("A wooden stick made of high-quality oak.\nIt's been in your family for generations...", "Wooden Stick", 0, 10, 1);
         sword = new Inventory("Shiny Sword", "sword", 15, 5, 2);
 
         // Setup player with initial health, inventory, and name
@@ -72,10 +72,10 @@ public class PlayerTest {
     @Test
     public void testCheckInventories() {
         // Check for an item in the inventory
-        Inventory found = player.checkInventories("stick");
+        Inventory found = player.checkInventories("Wooden Stick");
 
         // Verify that the correct item is found
         assertNotNull(found);
-        assertEquals("stick", found.getName());
+        assertEquals("Wooden Stick", found.getName());
     }
 }

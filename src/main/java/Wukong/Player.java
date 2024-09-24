@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * It also provides methods to manage the player's inventory and actions.
  *
  * * @author Tianfa Zhu
- *  * @author Tashia Tamara
+ * * @author Tashia Tamara
  */
 public class Player {
     private double health;
@@ -17,7 +17,7 @@ public class Player {
 
     /**
      * Constructs a Player object with the specified health, inventory, and name.
-     * Adds a default "stick" item to the player's inventory.
+     * Adds a default "wooden stick" item to the player's inventory.
      *
      * @param health The initial health of the player.
      * @param inventory The list of Inventory objects the player starts with.

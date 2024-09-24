@@ -23,17 +23,18 @@ public class PrimaryCommandsTest {
         assertNull(primaryCommands.handleCommand("inventory"));
         assertNull(primaryCommands.handleCommand("drop"));
         assertNull(primaryCommands.handleCommand("map"));
+        assertNull(primaryCommands.handleCommand("inspect"));
     }
 
     @Test
     public void testInvalidCommand() {
         String result = primaryCommands.handleCommand("invalidCommand");
-        assertEquals("Unknown command. Right commands are: go quit collect guide inventory drop map", result);
+        assertEquals("Unknown command. The correct commands are: go quit collect guide inventory drop map inspect.", result);
     }
 
     @Test
     public void testListCommands() {
-        String expectedCommands = "go quit collect guide inventory drop map";
+        String expectedCommands = "go quit collect guide inventory drop map inspect";
         assertEquals(expectedCommands, primaryCommands.listCommands());
     }
 }
