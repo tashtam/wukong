@@ -11,7 +11,7 @@ public class PrimaryCommands {
 
     // List of valid commands that the player can input
     private List<String> commandsList = Arrays.asList(
-            "go", "quit", "collect", "guide", "inventory", "drop", "map"
+            "go", "quit", "collect", "guide", "inventory", "drop", "map", "inspect"
     );
 
     /**
@@ -24,7 +24,7 @@ public class PrimaryCommands {
         if (commandsList.contains(command)) {
             return null;
         } else {
-            return "Unknown command. The correct commands are: " + String.join(" ", commandsList);
+            return "Unknown command. The correct commands are: " + String.join(" ", commandsList) + ".";
         }
     }
     

@@ -59,4 +59,9 @@ public class Inventory {
     public void setDefense(double Defense) {
         this.Defense = Defense;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

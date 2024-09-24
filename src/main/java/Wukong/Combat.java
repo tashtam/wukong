@@ -10,12 +10,13 @@ import java.util.concurrent.atomic.AtomicReference;
  * attacking the monster, and receiving counter-attacks from the monster.
  *
  * @author Tianfa Zhu
+ * @author Ziying Ye
  * @author Tashia Tamara
  */
 
 public class Combat {
     private Player player;
-    private Monster Monster;
+    private Monster monster;
     private Scanner keyBoard;
 
     private static final long TIMEOUT = 10000;
@@ -23,13 +24,13 @@ public class Combat {
     /**
      * Constructs a new Combat instance.
      *
-     * @param Monster  The monster to be fought in combat.
+     * @param monster  The monster to be fought in combat.
      * @param player   The player engaging in combat.
      * @param keyBoard The Scanner object for user input.
      */
-    public Combat(Monster Monster, Player player, Scanner keyBoard) {
+    public Combat(Monster monster, Player player, Scanner keyBoard) {
         this.player = player;
-        this.Monster = Monster;
+        this.monster = monster;
         this.keyBoard = keyBoard;
     }
 
@@ -97,7 +98,7 @@ public class Combat {
      * @return true if the monster's health is greater than 0, false otherwise.
      */
     private boolean monsterIsAlive() {
-        return Monster.getHealth() > 0;
+        return monster.getHealth() > 0;
     }
 
     /**
@@ -134,9 +135,9 @@ public class Combat {
             future.get(TIMEOUT, TimeUnit.MILLISECONDS);
         } catch (TimeoutException e) {
             // Handle timeout
-            System.out.println("\nTimeout: Automatically selecting 'stick'.\n");
+            System.out.println("\nTimeout: Automatically selecting 'Wooden Stick'.\n");
             if (selected.get() == null) {
-                selected.set(player.checkInventories("stick"));
+                selected.set(player.checkInventories("Wooden Stick"));
             }
             stopFlag.set(true);
         } catch (InterruptedException | ExecutionException e) {
@@ -169,8 +170,11 @@ public class Combat {
         // Display the randomly chosen player attack text along with the damage dealt by the player
         System.out.println(randomPlayerAttackText + " Damage: " + selected.getDamage());
 
-        Monster.setHealth(Monster.getHealth() - selected.getDamage());
-        System.out.println("Monster has " + Monster.getHealth() + " HP.");
+        monster.setHealth(monster.getHealth() - selected.getDamage());
+        if (monster.getHealth() < 0) {
+            monster.setHealth(0);
+        }
+        System.out.println("Monster has " + monster.getHealth() + " HP.");
     }
 
     /**
@@ -192,12 +196,15 @@ public class Combat {
         String randomMonsterAttackText = monsterAttackText.get(randomIndex);
 
         double damageMultiplier = 0.3 + Math.random() * 0.5;
-        double damageByMonster = Monster.getDamage() * damageMultiplier * highestDefense().getDefense();
+        double damageByMonster = monster.getDamage() * damageMultiplier * highestDefense().getDefense();
 
         // Display the randomly picked monster attack text along with the damage dealt by the monster
         System.out.println(randomMonsterAttackText + " Damage: " + (int) damageByMonster);
 
         player.setHealth(player.getHealth() - damageByMonster);
+        if (player.getHealth() < 0) {
+            player.setHealth(0);
+        }
         System.out.println("Your current HP is: " + player.getHealth());
     }
 

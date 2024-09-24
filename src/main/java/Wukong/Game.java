@@ -40,7 +40,8 @@ public class Game {
      */
 
     private void initAreas() {
-        Key1 = new Inventory("Golden Hoop", "key1", 1, 0, 1);
+        Key1 = new Inventory("A key made of silver, with the shape of a crescent moon carved into it.\n" +
+                "Along its shaft, carved in tiny letters, are the words 'Mount Fangcun'.", "Moon Key", 1, 0, 1);
         Key2 = new Inventory("Bajiao Fan", "key2", 1, 0, 1);
         Key3 = new Inventory("Golden Feather", "key3", 1, 0, 1);
         Key4 = new Inventory("Magic Pestle","key4", 1, 0, 1);
@@ -132,7 +133,7 @@ public class Game {
         StringBuilder welcomeMessage = new StringBuilder()
                 .append("\n")
                 .append("Welcome to Wukong!\n\n")
-                .append("Your command words are 'go quit collect guide inventory drop map'.\n\n")
+                .append("Your command words are 'go quit collect guide inventory drop map inspect'.\n\n")
                 .append("Type 'guide' if you require assistance.\n")
                 .append("Type 'collect' every time you enter a new location to search for items.")
                 .append("\n\n")
@@ -187,6 +188,10 @@ public class Game {
                 DropCommand(command);
                 break;
 
+            case "inspect":
+                InspectCommand(command);
+                break;
+
             case "map":
                 Map.map(currentArea.getMapName());
                 break;
@@ -209,7 +214,7 @@ public class Game {
             System.out.println(command);
             goArea(command);
         } catch (NullPointerException e) {
-            System.out.println("There is no gate here!");
+            System.out.println("There is no gate there!");
         }
     }
 
@@ -237,10 +242,9 @@ public class Game {
                 Inventory = findInventoryByName(Inventories, InventoryChosen);
             }
 
-            // Further explanation needed
             if (player.addInventory(Inventory)) {
                 currentArea.removeInventory(Inventory);
-                System.out.println("item added successfully");
+                System.out.println("Item added successfully!");
             } else {
                 System.out.println("Item cannot be added due to weight restrictions: " + Inventory.getWeight());
                 System.out.println("Your weight currently: " + player.getWeight());
@@ -248,7 +252,7 @@ public class Game {
         } else {
             Inventory Inventory = Inventories.get(0);
             if (player.addInventory(Inventory)) {
-                System.out.println("Inventory: " + Inventory.getName() + " added successfully");
+                System.out.println("Inventory: " + Inventory.getName() + " added successfully!");
                 currentArea.removeInventory(Inventory);
             } else {
                 System.out.println("Could not add item due to weight: " + Inventory.getWeight());
@@ -280,19 +284,40 @@ public class Game {
      *
      * @param command the command to process
      */
-    // Further explanation needed
     private void DropCommand(Command command) {
         if (command.hasAdditionalCommand()) {
             Inventory selectedInventory = player.checkInventories(command.getAdditionalCommand());
+            String selectedInventoryString = selectedInventory.toString();
             if (selectedInventory == null) {
                 System.out.println("Item not found. Please check if it was spelled correctly.");
             } else {
                 player.dropInventory(selectedInventory);
                 currentArea.addInventory(selectedInventory);
-                System.out.println("Inventory dropped successfully!"); //Does this refer to dropping an item?
+                if (!selectedInventoryString.equals("Wooden Stick")) {
+                    System.out.println("Item dropped successfully!");
+                }
             }
         } else {
-            System.out.println("Which item would you like to drop?");
+            System.out.println("Which item would you like to drop? (To drop an item, type 'drop' followed by the item name)");
+            player.listInventories();
+        }
+    }
+
+    /**
+     * Handles the "inspect" command, allowing the player to find out more information / explanation about their selected inventory item.
+     *
+     * @param command the command to process
+     */
+    private void InspectCommand(Command command) {
+        if (command.hasAdditionalCommand()) {
+            Inventory selectedInventory = player.checkInventories(command.getAdditionalCommand());
+            if (selectedInventory == null) {
+                System.out.println("Item not found. Please check if it was spelled correctly.");
+            } else {
+                System.out.println(player.inspectInventoryItem(selectedInventory));
+            }
+        } else {
+            System.out.println("Which item would you like to inspect? (To inspect an item, type 'inspect' followed by the item name)");
             player.listInventories();
         }
     }
@@ -301,7 +326,7 @@ public class Game {
      * Displays the guide for the game.
      */
     private void Guide() {
-        System.out.println("Tips\n\nYour command words are:\n" + parser.showCommands());
+        System.out.println("Your command words are:\n" + parser.showCommands());
     }
 
 
@@ -406,13 +431,15 @@ public class Game {
 
 
         if (currentArea.MonsterExists()) {
-            System.out.println("You've encountered " + currentArea.getMonster().getName() + ". You have to defeat this monster to proceed.");
-       
+            System.out.println("You've encountered " + currentArea.getMonster().getName() +
+                    ". You have to defeat this monster to proceed." +
+                    "\nYou have 10 seconds to select an item, otherwise 'Wooden Stick' will automatically be selected.");
+
             if (new Combat(currentArea.getMonster(), player, keyBoard).Combat()) {
-          
+
                 currentArea.addInventory(currentArea.getMonster().getTreasure());
                 System.out.println("\nGather your treasure from the monster using the 'collect' command.");
-                currentArea.removeMonster();  
+                currentArea.removeMonster();
             } else {
                 System.exit(0);
             }

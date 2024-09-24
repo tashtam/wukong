@@ -5,6 +5,9 @@ import java.util.ArrayList;
 /**
  * The Player class represents a player character in the game, holding attributes such as health, inventory, and weight.
  * It also provides methods to manage the player's inventory and actions.
+ *
+ * * @author Tianfa Zhu
+ *  * @author Tashia Tamara
  */
 public class Player {
     private double health;
@@ -21,7 +24,7 @@ public class Player {
      * @param name The name of the player.
      */
     public Player(double health, ArrayList<Inventory> inventory, String name) {
-        Inventory stick = new Inventory("Your own stick", "stick", 0, 10, 1);
+        Inventory stick = new Inventory("A wooden stick made of a high-quality oak.\nIt's been in your family for generations...", "Wooden Stick", 0, 10, 1);
         this.health = health;
         this.inventory = inventory;
         this.name = name;
@@ -91,11 +94,12 @@ public class Player {
             }
         }
 
-        if (!inventory.getName().equals("stick")) {
+        if (!inventory.getName().equals("Wooden Stick")) {
             setWeight(weight + inventory.getWeight());
             setInventory(updatedInventory);
         } else {
-            System.out.println("You can't drop your hands ;)");
+            System.out.println("You can't drop the stick! It was given to you by your beloved grandfather.\n" +
+                    "It's been in your family for generations. If you got rid of it, he'll turn over in his grave!");
         }
     }
 
@@ -122,4 +126,19 @@ public class Player {
             System.out.println(inv.getName());
         }
     }
+
+
+    /**
+     * Shows more information or explanation about the selected inventory item
+     *
+     * @param inventory The selected inventory item
+     * @return The selected item's information or description
+     */
+    public String inspectInventoryItem(Inventory inventory) {
+        for (Inventory e : this.inventory) {
+            if (e.getName().equals(inventory.getName())) {
+                return e.getInfo();
+            }
+        }
+    return null;}
 }
