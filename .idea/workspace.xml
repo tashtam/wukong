@@ -4,49 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d14ff2e-c341-4434-9205-8f38164e4f90" name="Changes" comment="file">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="5d14ff2e-c341-4434-9205-8f38164e4f90" name="Changes" comment="Edited combat attack text with new code version from Dev1-branch + Added the 'collect' item collection tooltip + Improved opening text">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comp6120-thu16_a3_c.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Area.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Combat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Command.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Gate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Inventory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Lock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Map.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Monster.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Parser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/PrimaryCommands.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/Wukong.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Q1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Q2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Q3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/comp6120-thu16_a3_c/Wukong/quiz/Quiz.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Wukong/Combat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Wukong/Combat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Wukong/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Wukong/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Wukong/Wukong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Wukong/Wukong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/Combat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/Combat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Wukong/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/PrimaryCommands.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/PrimaryCommands.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Wukong/Wukong.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/Wukong.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Wukong/quiz/Q3.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Dev1-branch-combat-and-riddle-description-update",
+    "git-widget-placeholder": "Dev1-branch-combat-inventory-riddle-description-update",
     "last_opened_file_path": "D:/Astudy/ANU/2024S2/6120/ASS_6120/ass3_6120/newFromGit916",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -168,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726725102228</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Edited combat attack text with new code version from Dev1-branch + Added the 'collect' item collection tooltip + Improved opening text">
+      <option name="closed" value="true" />
+      <created>1726932493116</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726932493116</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +159,7 @@
     <MESSAGE value="rename License branch name" />
     <MESSAGE value="Add time challenge feature for &quot;Cave&quot; map" />
     <MESSAGE value="file" />
-    <option name="LAST_COMMIT_MESSAGE" value="file" />
+    <MESSAGE value="Edited combat attack text with new code version from Dev1-branch + Added the 'collect' item collection tooltip + Improved opening text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited combat attack text with new code version from Dev1-branch + Added the 'collect' item collection tooltip + Improved opening text" />
   </component>
 </project>
