@@ -2,16 +2,34 @@ package Wukong;
 
 import java.util.Scanner;
 
+/**
+ * The Parser class is responsible for reading user input, parsing commands, and validating them.
+ * It reads input from the keyboard and splits it into primary and secondary commands.
+ *
+ *  * @author Tianfa Zhu
+ */
 public class Parser {
 
     private Scanner keyBoard;
     private PrimaryCommands validPrimaryCommands;
 
+    /**
+     * Constructs a Parser that reads from the specified Scanner object.
+     *
+     * @param keyBoard The Scanner object used to read user input.
+     */
     public Parser(Scanner keyBoard) {
         this.keyBoard = keyBoard;
         this.validPrimaryCommands = new PrimaryCommands();
     }
 
+    /**
+     * Reads and parses the next user command from the input.
+     * Validates the primary command using PrimaryCommands and returns a Command object.
+     *
+     * @return A Command object containing the parsed primary and secondary commands.
+     *         If the primary command is invalid, a message is printed, and a Command with a null primary command is returned.
+     */
     public Command getCommand() {
         System.out.print("> ");
 
@@ -28,6 +46,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a list of valid commands.
+     *
+     * @return A string listing all valid primary commands.
+     */
     public String showCommands() {
         return validPrimaryCommands.listCommands();
     }

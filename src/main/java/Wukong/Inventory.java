@@ -1,6 +1,12 @@
 package Wukong;
 
-
+/**
+ * This class represents an inventory item in the game.
+ * Each item has information such as its name, weight, damage, and defense properties.
+ *
+ *  * @author Tianfa Zhu
+ *  * @author Tashia Tamara
+ */
 public class Inventory {
     private String info;
     private String name;
@@ -55,5 +61,10 @@ public class Inventory {
 
     public void setDefense(double Defense) {
         this.Defense = Defense;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
