@@ -125,4 +125,8 @@ public class Area {
     }
 
 
+    public String getName() {
+        return info;
+    }
+
 }
