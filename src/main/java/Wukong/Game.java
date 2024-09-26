@@ -35,6 +35,15 @@ public class Game {
         currentArea = HuaguoMount;
     }
 
+    public Game(String playerName, Scanner scanner) {
+        this.keyBoard = scanner;  // 使用传入的 Scanner 对象
+        this.parser = new Parser(keyBoard);
+        this.player = new Player(100, new ArrayList<>(), playerName);
+        initAreas();
+        initGates();
+        this.currentArea = HuaguoMount;  // 设置起始区域
+    }
+
     /**
      * Initializes all areas in the game.
      */
@@ -405,7 +414,7 @@ public class Game {
      * Returns to the map view from a quiz-based lock. If there is an
      * error or no map is available, an appropriate message is displayed.
      */
-    private void returnToMap() {
+    void returnToMap() {
         try {
             if (currentArea.getMapName() != null) {
                 Map.map(currentArea.getMapName());
@@ -426,7 +435,7 @@ public class Game {
      *
      * @param nextArea The area to switch to.
      */
-    private void switchAreas(Area nextArea) {
+    void switchAreas(Area nextArea) {
         lastArea = currentArea;
         currentArea = nextArea;
         System.out.println(currentArea.longInfo());
@@ -456,6 +465,18 @@ public class Game {
                 System.exit(0);
             }
         }
+    }
+
+    public Area getCurrentArea() {
+        return currentArea;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Inventory getKey1() {
+        return moonKey;
     }
 
 
