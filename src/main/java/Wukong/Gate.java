@@ -1,6 +1,8 @@
 package Wukong;
 
 /**
+ * @author Tianfa Zhu
+ *
  * This class represents a gate connecting two areas in the game.
  * A gate may have an optional lock.
  */

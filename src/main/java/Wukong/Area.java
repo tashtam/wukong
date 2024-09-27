@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * @author Tianfa Zhu
+ *
  * The Area class represents a location in the game with information about its surroundings,
  * possible exits, contained items, and any monsters present.
  */

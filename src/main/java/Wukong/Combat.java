@@ -5,13 +5,13 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Handles the combat mechanics between a player and a monster.
- * The combat involves selecting items from the player's inventory,
- * attacking the monster, and receiving counter-attacks from the monster.
- *
  * @author Tianfa Zhu
  * @author Ziying Ye
  * @author Tashia Tamara
+ *
+ * Handles the combat mechanics between a player and a monster.
+ * The combat involves selecting items from the player's inventory,
+ * attacking the monster, and receiving counter-attacks from the monster.
  */
 
 public class Combat {
@@ -151,6 +151,8 @@ public class Combat {
 
     /**
      * Executes the player's attack on the monster using the selected item.
+     * The player attack text for each turn is picked randomly from the
+     * three pre-written options.
      *
      * @param selected The item selected by the player for the attack.
      */
@@ -180,7 +182,8 @@ public class Combat {
     /**
      * Executes the monster's attack on the player. The damage is based
      * on the monster's attack power and a random multiplier, adjusted by
-     * the player's highest defense item.
+     * the player's highest defense item. The monster attack text for each
+     * turn is picked randomly from the three pre-written options.
      */
     private void monsterAttacks() {
 

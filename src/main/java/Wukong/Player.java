@@ -3,11 +3,11 @@ package Wukong;
 import java.util.ArrayList;
 
 /**
+ * @author Tianfa Zhu
+ * @author Tashia Tamara
+ *
  * The Player class represents a player character in the game, holding attributes such as health, inventory, and weight.
  * It also provides methods to manage the player's inventory and actions.
- *
- * * @author Tianfa Zhu
- * * @author Tashia Tamara
  */
 public class Player {
     private double health;

@@ -1,6 +1,8 @@
 package Wukong;
 
 /**
+ * @author Tianfa Zhu
+ *
  * This class represents a Monster with a name, health, damage, and an optional treasure.
  */
 public class Monster {

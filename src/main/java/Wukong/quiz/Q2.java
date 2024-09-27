@@ -3,6 +3,9 @@ package Wukong.quiz;
 import java.util.Scanner;
 
 /**
+ * @author Tianfa Zhu
+ * @author Tashia Tamara
+ *
  * Represents a specific quiz in the game, where the user has to answer a riddle.
  */
 public class Q2 implements Quiz {

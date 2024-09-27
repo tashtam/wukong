@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * @author Tianfa Zhu
+ * @author Tashia Tamara
+ *
  * The PrimaryCommands class handles and validates the primary commands that a player can use in the game.
  * It also provides a way to list all valid commands.
  */
