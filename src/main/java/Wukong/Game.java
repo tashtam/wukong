@@ -294,7 +294,7 @@ public class Game {
                 System.out.println("Item added successfully!");
             } else {
                 System.out.println("Item cannot be added due to weight restrictions: " + Inventory.getWeight());
-                System.out.println("Your weight currently: " + player.getWeight());
+                System.out.println("Remaining weight capacity: " + player.getWeight());
             }
         } else {
             Inventory Inventory = Inventories.get(0);
@@ -302,8 +302,8 @@ public class Game {
                 System.out.println("Inventory: " + Inventory.getName() + " added successfully!");
                 currentArea.removeInventory(Inventory);
             } else {
-                System.out.println("Could not add item due to weight: " + Inventory.getWeight());
-                System.out.println("Your weight currently: " + player.getWeight());
+                System.out.println("Item cannot be added due to weight restrictions: " + Inventory.getWeight());
+                System.out.println("Remaining weight capacity: " + player.getWeight());
             }
         }
     }
