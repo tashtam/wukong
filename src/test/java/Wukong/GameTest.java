@@ -41,7 +41,10 @@ public class GameTest {
     public void testGameInitialization() {
         // 验证游戏初始化是否正确
         assertEquals("Wukong", game.getPlayer().getName());
-        assertEquals("Huaguo Mountain", game.getCurrentArea().getName());
+        assertEquals("""
+                Huaguo Mountain.
+                The mountain is lush with trees and vegetation.
+                In the distance, you hear the distant shower of the waterfall""", game.getCurrentArea().getName());
     }
 
     @Test
