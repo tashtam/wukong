@@ -66,30 +66,35 @@ public class Game {
 
         Monster SpiderDemon = new Monster("Spider Demon, a gigantic spider with countless eyes, all of which are glaring at you menacingly", 90, 30, lionCamelKey);
 
-        HuaguoMount = new Area("Huaguo Mountain.\n" +
-                "The mountain is lush with trees and vegetation.\n" +
-                "In the distance, you hear the distant shower of the waterfall", "HuaguoMount");
+        HuaguoMount = new Area("""
+                Huaguo Mountain.
+                The mountain is lush with trees and vegetation.
+                In the distance, you hear the distant shower of the waterfall""", "HuaguoMount");
 
-        Heaven = new Area("Heavenly Palace.\n" +
-                "The palace towers before you, its grand white pillars standing strong.\n" +
-                "You walk around the palace, your each step echoing loudly in the quiet space", moonKey, "Heaven");
+        Heaven = new Area("""
+                Heavenly Palace.
+                The palace towers before you, its grand white pillars standing strong.
+                You walk around the palace, your each step echoing loudly in the quiet space""", moonKey, "Heaven");
 
-        Cave = new Area("Mountainside Cave.\n" +
-                "The cave seems dark and eerie.\n" +
-                "Something about it makes you feel uneasy", WhiteBoneDemon, "Cave");
+        Cave = new Area("""
+                Mountainside Cave.
+                The cave seems dark and eerie.
+                Something about it makes you feel uneasy""", WhiteBoneDemon, "Cave");
 
-        MountFangcun = new Area("Mount Fangcun of the Scriptures.\n" +
-                "Impossibly tall bookshelves have been carved into the mountain.\n" +
-                "The shelves are filled with endless rows of books and scriptures,\n" +
-                "that look like they've been sitting in the shelves for a very long time", "MountFangcun");
+        MountFangcun = new Area("""
+                Mount Fangcun of the Scriptures.
+                Impossibly tall bookshelves have been carved into the mountain.
+                The shelves are filled with endless rows of books and scriptures,
+                that look like they've been sitting in the shelves for a very long time""", "MountFangcun");
 
         WuzhuangTemple = new Area("Taoist Wuzhuang Temple.\n" +
                 "As you enter, the temple's gates, you smell the sweet scent of burning incense." +
                 "It makes you feel at peace", "WuzhuangTemple");
 
-        DragonPalace = new Area("Dragon Palace.\n" +
-                "A huge statue of a dragon sits on top of the roof of the palace,\n" +
-                "watching you with wide eyes, like it's guarding the place", goldenCudgel, "DragonPalace");
+        DragonPalace = new Area("""
+                Dragon Palace.
+                A huge statue of a dragon sits on top of the roof of the palace,
+                watching you with wide eyes, like it's guarding the place""", goldenCudgel, "DragonPalace");
 
         FlamingMountain = new Area("Flaming Mountain.\n" +
                 "Smoke billows out from the peak of the mountain." +
@@ -99,13 +104,15 @@ public class Game {
                 "The name of this cave alone sends shivers down your spine." +
                 "You really, really hate spiders", SpiderDemon, "SpiderCave");
 
-        LionCamelRidge = new Area("Lion Camel Ridge.\n" +
-                "The shape of the ridge resembles a lion when being viewed from the north,\n" +
-                "and resembles a camel when viewed from the south", "LionCamelRidge");
+        LionCamelRidge = new Area("""
+                Lion Camel Ridge.
+                The shape of the ridge resembles a lion when being viewed from the north,
+                and resembles a camel when viewed from the south""", "LionCamelRidge");
 
-        GreenCloudMountain = new Area("Green Cloud Mountain.\n" +
-                "You've hiked for so long, and you're exhausted.\n" +
-                "You look around and find that you've reached a height above the clouds", GoldenWingedPeng, "GreenCloudMountain");
+        GreenCloudMountain = new Area("""
+                Green Cloud Mountain.
+                You've hiked for so long, and you're exhausted.
+                You look around and find that you've reached a height above the clouds""", GoldenWingedPeng, "GreenCloudMountain");
 
         LeiyinTemple = new Area("Leiyin Temple.\n" +
                 "Just like the rumors said, the treasure box is sitting there, waiting for you", "LeiyinTemple");
