@@ -156,7 +156,7 @@ public class Combat {
      *
      * @param selected The item selected by the player for the attack.
      */
-    private void playerAttacks(Inventory selected) {
+    void playerAttacks(Inventory selected) {
 
         ArrayList<String> playerAttackText = new ArrayList<>(Arrays.asList(
                 "You lunge forward and hit the monster!",
@@ -185,7 +185,7 @@ public class Combat {
      * the player's highest defense item. The monster attack text for each
      * turn is picked randomly from the three pre-written options.
      */
-    private void monsterAttacks() {
+    void monsterAttacks() {
 
         ArrayList<String> monsterAttackText = new ArrayList<>(Arrays.asList(
                 "The monster roars and hits you in the stomach!",
@@ -215,8 +215,13 @@ public class Combat {
      * Pauses the combat and waits for the user to press Enter to continue.
      */
     private void waitForEnter() {
-        System.out.println("Press Enter to continue...");
-        keyBoard.nextLine(); // Wait for the user to press Enter
+        // Check if there is more input to avoid NoSuchElementException
+        if (keyBoard.hasNextLine()) {
+            System.out.println("Press Enter to continue...");
+            keyBoard.nextLine(); // Wait for the user to press Enter
+        } else {
+            System.out.println("No more input available, skipping Enter wait...");
+        }
     }
 
     /**
