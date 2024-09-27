@@ -5,6 +5,8 @@ import Wukong.PrimaryCommands;
 import java.util.Scanner;
 
 /**
+ * @author Tianfa Zhu
+ *
  * Interface representing a quiz that can be used to unlock locks.
  */
 

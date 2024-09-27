@@ -3,10 +3,10 @@ package Wukong;
 import java.util.Scanner;
 
 /**
+ * @author Tianfa Zhu
+ *
  * The Parser class is responsible for reading user input, parsing commands, and validating them.
  * It reads input from the keyboard and splits it into primary and secondary commands.
- *
- *  * @author Tianfa Zhu
  */
 public class Parser {
 

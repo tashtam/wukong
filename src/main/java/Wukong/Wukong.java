@@ -23,6 +23,7 @@ public class Wukong {
                 Welcome to Wukong, a text-based adventure game!
 
                 In this game, your goal as an adventurer is to get to the Leiyin Temple.
+                You've heard a rumor that someone has left a big treasure box full of gold inside the temple!
                 However, your journey to get there will be riddled with lots of challenges.
                 Will you successfully reach the temple? Or will you succumb to the many obstacles along the way?
 

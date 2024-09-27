@@ -4,6 +4,8 @@ import Wukong.quiz.Quiz;
 import java.util.Scanner;
 
 /**
+ * @author Tianfa Zhu
+ *
  * This class represents a lock mechanism that can either be unlocked using a key item or by solving a quiz.
  * The lock can also be instantiated as unlocked by default.
  */

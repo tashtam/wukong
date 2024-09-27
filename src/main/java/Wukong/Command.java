@@ -1,6 +1,8 @@
 package Wukong;
 
 /**
+ * @author Tianfa Zhu
+ *
  * The Command class represents a user command with a primary command and an optional additional command.
  */
 public class Command {

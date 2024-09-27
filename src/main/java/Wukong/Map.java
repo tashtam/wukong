@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
 /**
+ * @author Tianfa Zhu
+ *
  * This class represents a map loader that reads and displays map content from a text file.
  */
 public class Map {

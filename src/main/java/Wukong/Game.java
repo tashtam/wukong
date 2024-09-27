@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Represents the main game engine for the text-based adventure game "Wukong".
- * It manages the game state, player actions, and transitions between different areas.
- *
  * @author Tianfa Zhu
  * @author Tashia Tamara
+ *
+ * Represents the main game engine for the text-based adventure game "Wukong".
+ * It manages the game state, player actions, and transitions between different areas.
  */
 public class Game {
 
@@ -67,22 +67,64 @@ public class Game {
         Inventory boneArmor = new Inventory("An armor made of a strong material that reminds of you of... bones? \n" +
                 "When you put it on, the armor rattles and clacks with your every move.", "Bone Armor", 1, 0, 0.5);
 
-        Monster BullKing = new Monster("Bull_King", 100, 50, sunKey);
-        Monster WhiteBoneDemon = new Monster("White Bone Demon", 100, 50, boneArmor);
-        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng", 100, 30, diamondKey);
-        Monster SpiderDemon = new Monster("Spider Demon", 90, 30, lionCamelKey);
+        Monster BullKing = new Monster("Bull King, an extremely angry-looking bull demon dressed in chain mail armor", 100, 50, sunKey);
 
-        HuaguoMount = new Area("Huaguo Mountain", "HuaguoMount");
-        Heaven = new Area("Heavenly Palace", moonKey, "Heaven");
-        Cave = new Area("Mountainside Cave", WhiteBoneDemon, "Cave");
-        MountFangcun = new Area("Mount Fangcun of the Scriptures", "MountFangcun");
-        WuzhuangTemple = new Area("Taoist WuzhuangTemple", "WuzhuangTemple");
-        DragonPalace = new Area("Dragon Palace", goldenCudgel, "DragonPalace");
-        FlamingMountain = new Area("Flaming Mountain", BullKing, "FlamingMountain");
-        LeiyinTemple = new Area("Leiyin Temple", "LeiyinTemple");
-        SpiderCave = new Area("Spider Cave", SpiderDemon, "SpiderCave");
-        LionCamelRidge = new Area("Lion Camel Ridge", "LionCamelRidge");
-        GreenCloudMountain = new Area("Green Cloud Mountain", GoldenWingedPeng, "GreenCloudMountain");
+        Monster WhiteBoneDemon = new Monster("White Bone Demon, a demonic looking skeleton monster wielding a sword made from a sharpened bone", 100, 50, boneArmor);
+
+        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng, a bird monster with a gold beak, a gold crown, and huge golden wings", 100, 30, diamondKey);
+
+        Monster SpiderDemon = new Monster("Spider Demon, a gigantic spider with countless eyes, all of which are glaring at you menacingly", 90, 30, lionCamelKey);
+
+        HuaguoMount = new Area("""
+                Huaguo Mountain.
+                The mountain is lush with trees and vegetation.
+                In the distance, you hear the distant shower of the waterfall""", "HuaguoMount");
+
+        Heaven = new Area("""
+                Heavenly Palace.
+                The palace towers before you, its grand white pillars standing strong.
+                You walk around the palace, your each step echoing loudly in the quiet space""", moonKey, "Heaven");
+
+        Cave = new Area("""
+                Mountainside Cave.
+                The cave seems dark and eerie.
+                Something about it makes you feel uneasy""", WhiteBoneDemon, "Cave");
+
+        MountFangcun = new Area("""
+                Mount Fangcun of the Scriptures.
+                Impossibly tall bookshelves have been carved into the mountain.
+                The shelves are filled with endless rows of books and scriptures,
+                that look like they've been sitting in the shelves for a very long time""", "MountFangcun");
+
+        WuzhuangTemple = new Area("Taoist Wuzhuang Temple.\n" +
+                "As you enter, the temple's gates, you smell the sweet scent of burning incense." +
+                "It makes you feel at peace", "WuzhuangTemple");
+
+        DragonPalace = new Area("""
+                Dragon Palace.
+                A huge statue of a dragon sits on top of the roof of the palace,
+                watching you with wide eyes, like it's guarding the place""", goldenCudgel, "DragonPalace");
+
+        FlamingMountain = new Area("Flaming Mountain.\n" +
+                "Smoke billows out from the peak of the mountain." +
+                "You feel hot, and you can feel beads of sweat form on your forehead.", BullKing, "FlamingMountain");
+
+        SpiderCave = new Area("Spider Cave.\n" +
+                "The name of this cave alone sends shivers down your spine." +
+                "You really, really hate spiders", SpiderDemon, "SpiderCave");
+
+        LionCamelRidge = new Area("""
+                Lion Camel Ridge.
+                The shape of the ridge resembles a lion when being viewed from the north,
+                and resembles a camel when viewed from the south""", "LionCamelRidge");
+
+        GreenCloudMountain = new Area("""
+                Green Cloud Mountain.
+                You've hiked for so long, and you're exhausted.
+                You look around and find that you've reached a height above the clouds""", GoldenWingedPeng, "GreenCloudMountain");
+
+        LeiyinTemple = new Area("Leiyin Temple.\n" +
+                "Just like the rumors said, the treasure box is sitting there, waiting for you", "LeiyinTemple");
 
     }
 
@@ -268,7 +310,7 @@ public class Game {
                 System.out.println("Item added successfully!");
             } else {
                 System.out.println("Item cannot be added due to weight restrictions: " + Inventory.getWeight());
-                System.out.println("Your weight currently: " + player.getWeight());
+                System.out.println("Remaining weight capacity: " + player.getWeight());
             }
         } else {
             Inventory Inventory = Inventories.get(0);
@@ -276,8 +318,8 @@ public class Game {
                 System.out.println("Inventory: " + Inventory.getName() + " added successfully!");
                 currentArea.removeInventory(Inventory);
             } else {
-                System.out.println("Could not add item due to weight: " + Inventory.getWeight());
-                System.out.println("Your weight currently: " + player.getWeight());
+                System.out.println("Item cannot be added due to weight restrictions: " + Inventory.getWeight());
+                System.out.println("Remaining weight capacity: " + player.getWeight());
             }
         }
     }
@@ -453,7 +495,7 @@ public class Game {
 
         if (currentArea.MonsterExists()) {
             System.out.println("You've encountered " + currentArea.getMonster().getName() +
-                    ". You have to defeat this monster to proceed." +
+                    ".\nYou have to defeat this monster to proceed." +
                     "\nYou have 10 seconds to select an item, otherwise 'Wooden Stick' will automatically be selected.");
 
             if (new Combat(currentArea.getMonster(), player, keyBoard).Combat()) {
