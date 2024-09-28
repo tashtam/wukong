@@ -10,6 +10,16 @@ import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
+
+/**
+ * The LockTest class is designed to test the functionality of the Lock class,
+ * specifically focusing on its behavior with different types of locks, including
+ * quiz locks and key locks. This test class includes test cases to ensure that
+ * locks are correctly initialized, and can be unlocked under the right conditions.
+ *
+ * @author Tianfa Zhu
+ */
+
 public class LockTest {
 
     private Lock quizLock;

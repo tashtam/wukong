@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @author Tianfa Zhu
  * @author Ziying Ye
  * @author Tashia Tamara
+ * @author Yang Cao
  *
  * Handles the combat mechanics between a player and a monster.
  * The combat involves selecting items from the player's inventory,
@@ -42,7 +43,7 @@ public class Combat {
      * @return true if the player wins the combat, false otherwise.
      */
     public boolean Combat() {
-        // Initialize player health to maximum if necessary
+        // Initialize player  to maximum if necessary
         initializePlayerHealth();
 
         while (playerIsAlive() && monsterIsAlive()) {
@@ -80,7 +81,7 @@ public class Combat {
      * it is currently set higher than this value.
      */
     private void initializePlayerHealth() {
-        player.setHealth(Math.min(player.getHealth(), 100));
+        player.setHealth(Math.max(player.getHealth(), 100));
     }
 
     /**
@@ -215,13 +216,8 @@ public class Combat {
      * Pauses the combat and waits for the user to press Enter to continue.
      */
     private void waitForEnter() {
-        // Check if there is more input to avoid NoSuchElementException
-        if (keyBoard.hasNextLine()) {
-            System.out.println("Press Enter to continue...");
-            keyBoard.nextLine(); // Wait for the user to press Enter
-        } else {
-            System.out.println("No more input available, skipping Enter wait...");
-        }
+        System.out.println("Press Enter to continue...");
+        keyBoard.nextLine(); // Wait for the user to press Enter
     }
 
     /**

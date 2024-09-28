@@ -14,7 +14,7 @@ public class PrimaryCommands {
 
     // List of valid commands that the player can input
     private List<String> commandsList = Arrays.asList(
-            "go", "quit", "collect", "guide", "inventory", "drop", "map", "inspect"
+            "go", "", "collect", "guide", "inventory", "drop", "map", "inspect"
     );
 
     /**

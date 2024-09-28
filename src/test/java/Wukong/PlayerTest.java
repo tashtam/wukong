@@ -7,6 +7,16 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
+/**
+ * The PlayerTest class is designed to test the functionality of the Player class,
+ * ensuring that it correctly manages the player's inventory, including adding, dropping,
+ * and checking items. This test class covers various scenarios to validate the expected
+ * behavior of inventory management methods.
+ * 
+ * @author Tianfa Zhu
+ */
+
+
 public class PlayerTest {
 
     private Player player;
