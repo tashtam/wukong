@@ -1,0 +1,39 @@
+{
+  "inventories": [
+    {
+      "info": "A key made of silver, with the shape of a crescent moon carved into it.\nAlong its shaft, carved in tiny letters, are the words 'Mount Fangcun'.",
+      "name": "moonKey",
+      "weight": 1,
+      "damage": 0,
+      "defense": 1
+    },
+    {
+      "info": "A sentient golden rod that can shrink or extend itself based on its owner's needs or wishes.\nYou have a feeling that this rod can be a useful weapon during fights.",
+      "name": "goldenCudgel",
+      "weight": 1,
+      "damage": 50,
+      "defense": 1
+    },
+    {
+      "info": "A key made of silver, with the shape of a crescent moon carved into it.\nAlong its shaft, carved in tiny letters, are the words 'Mount Fangcun'.",
+      "name": "sunKey",
+      "weight": 1,
+      "damage": 0,
+      "defense": 1
+    },
+    {
+      "info": "A diamond key that seems to gleam brightly, even under the silver moonlight.\nWhen you hold it, you feel powerful magic radiating from it. You've never felt anything like it.",
+      "name": "diamondKey",
+      "weight": 1,
+      "damage": 0,
+      "defense": 1
+    },
+    {
+      "info": "A bronze key with a picture of a roaring lion carved into it. \nWhen you flip the key, you find that the other side has a picture of a sleepy camel.",
+      "name": "lionCamelKey",
+      "weight": 1,
+      "damage": 0,
+      "defense": 1
+    }
+  ]
+}

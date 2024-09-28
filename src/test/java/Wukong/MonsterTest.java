@@ -5,6 +5,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
+/**
+ * The MonsterTest class is designed to test the functionality of the Monster class,
+ * ensuring that it correctly manages its attributes such as name, health, damage, and treasure.
+ * This test class includes test cases to verify the constructor and various setter methods
+ * for the Monster class, as well as the handling of null treasures.
+ * 
+ * @author Tianfa Zhu
+ */
 public class MonsterTest {
 
     private Monster dragon;

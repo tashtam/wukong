@@ -4,16 +4,22 @@ package Wukong;
 import Wukong.quiz.Q1;
 import Wukong.quiz.Q2;
 import Wukong.quiz.Q3;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * @author Tianfa Zhu
  * @author Tashia Tamara
  *
- * Represents the main game engine for the text-based adventure game "Wukong".
+ * Represents the main game engine for the text-based adventure game "Wukong," inspired by the classic game Zork.
  * It manages the game state, player actions, and transitions between different areas.
  */
 public class Game {
@@ -26,6 +32,9 @@ public class Game {
     private Area HuaguoMount, MountFangcun, WuzhuangTemple, DragonPalace, FlamingMountain, Cave, Heaven, LeiyinTemple, SpiderCave, LionCamelRidge, GreenCloudMountain;
     private Parser parser;
 
+    private List<Monster> monsters = new ArrayList<>();
+    private List<Inventory> inventories = new ArrayList<>();
+
 
     public Game(String name) {
         parser = new Parser(keyBoard);
@@ -35,46 +44,40 @@ public class Game {
         currentArea = HuaguoMount;
     }
 
-    public Game(String playerName, Scanner scanner) {
-        this.keyBoard = scanner;  // 使用传入的 Scanner 对象
-        this.parser = new Parser(keyBoard);
-        this.player = new Player(100, new ArrayList<>(), playerName);
-        initAreas();
-        initGates();
-        this.currentArea = HuaguoMount;  // 设置起始区域
+    private void loadFromJson(String monsterFilePath, String inventoryFilePath) {
+        Gson gson = new GsonBuilder().create();
+        loadJson(monsterFilePath, "monsters", Monster.class, monsters, gson);
+        loadJson(inventoryFilePath, "inventories", Inventory.class, inventories, gson);
     }
 
+    private <T> void loadJson(String filePath, String arrayName, Class<T> clazz, List<T> list, Gson gson) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            gson.fromJson(reader, JsonObject.class)
+                    .getAsJsonArray(arrayName)
+                    .forEach(element -> list.add(gson.fromJson(element, clazz)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * Initializes all areas in the game.
      */
 
     private void initAreas() {
-        moonKey = new Inventory("A key made of silver, with the shape of a crescent moon carved into it.\n" +
-                "Along its shaft, carved in tiny letters, are the words 'Mount Fangcun'.", "Moon Key", 1, 0, 1);
+        loadFromJson("src/main/Data/monster.json", "src/main/Data/inventory.json");
 
-        sunKey = new Inventory("A key made of gold, with the shape of a shining sun carved into it.\n" +
-                "The words 'Wuzhuang Temple' are carved along its shaft.", "Sun Key", 1, 0, 1);
+        Monster BullKing = monsters.get(0);
+        Monster WhiteBoneDemon = monsters.get(1);
+        Monster GoldenWingedPeng = monsters.get(2);
+        Monster SpiderDemon = monsters.get(3);
 
-        lionCamelKey = new Inventory("A bronze key with a picture of a roaring lion carved into it.\n" +
-                "When you flip the key, you find that the other side has a picture of a sleepy camel.", "Lion Camel Key", 1, 0, 1);
-
-        diamondKey = new Inventory("A diamond key that seems to gleam brightly, even under the silver moonlight.\n" +
-                "When you hold it, you feel powerful magic radiating from it. You've never felt anything like it.", "Diamond Key", 1, 0, 1);
-
-        Inventory goldenCudgel = new Inventory("A sentient golden rod that can shrink or extend itself based on its owner's needs or wishes.\n" +
-                "You have a feeling that this rod can be a useful weapon during fights.", "Golden Cudgel", 1, 50, 1);
-
-        Inventory boneArmor = new Inventory("An armor made of a strong material that reminds of you of... bones? \n" +
-                "When you put it on, the armor rattles and clacks with your every move.", "Bone Armor", 1, 0, 0.5);
-
-        Monster BullKing = new Monster("Bull King, an extremely angry-looking bull demon dressed in chain mail armor", 100, 50, sunKey);
-
-        Monster WhiteBoneDemon = new Monster("White Bone Demon, a demonic looking skeleton monster wielding a sword made from a sharpened bone", 100, 50, boneArmor);
-
-        Monster GoldenWingedPeng = new Monster("Golden-Winged Great Peng, a bird monster with a gold beak, a gold crown, and huge golden wings", 100, 30, diamondKey);
-
-        Monster SpiderDemon = new Monster("Spider Demon, a gigantic spider with countless eyes, all of which are glaring at you menacingly", 90, 30, lionCamelKey);
-
+        moonKey = inventories.get(0);
+        Inventory goldenCudgel = inventories.get(1);
+        sunKey = inventories.get(2);
+        diamondKey = inventories.get(3);
+        lionCamelKey = inventories.get(4);
+        
         HuaguoMount = new Area("""
                 Huaguo Mountain.
                 The mountain is lush with trees and vegetation.
@@ -107,11 +110,11 @@ public class Game {
 
         FlamingMountain = new Area("Flaming Mountain.\n" +
                 "Smoke billows out from the peak of the mountain." +
-                "You feel hot, and you can feel beads of sweat form on your forehead.", BullKing, "FlamingMountain");
+                "You feel hot, and you can feel beads of sweat form on your forehead.",sunKey, BullKing, "FlamingMountain");
 
         SpiderCave = new Area("Spider Cave.\n" +
                 "The name of this cave alone sends shivers down your spine." +
-                "You really, really hate spiders", SpiderDemon, "SpiderCave");
+                "You really, really hate spiders", lionCamelKey,SpiderDemon, "SpiderCave");
 
         LionCamelRidge = new Area("""
                 Lion Camel Ridge.
@@ -121,10 +124,9 @@ public class Game {
         GreenCloudMountain = new Area("""
                 Green Cloud Mountain.
                 You've hiked for so long, and you're exhausted.
-                You look around and find that you've reached a height above the clouds""", GoldenWingedPeng, "GreenCloudMountain");
+                You look around and find that you've reached a height above the clouds""",diamondKey, GoldenWingedPeng, "GreenCloudMountain");
 
-        LeiyinTemple = new Area("Leiyin Temple.\n" +
-                "Just like the rumors said, the treasure box is sitting there, waiting for you", "LeiyinTemple");
+        LeiyinTemple = new Area("Leiyin Temple. Just like the rumors said, the treasure box is sitting there, waiting for you. You have completed the game", "LeiyinTemple");
 
     }
 
@@ -169,8 +171,7 @@ public class Game {
         Map.map(currentArea.getMapName());
 
         processCommands();
-
-        System.out.println("Thank you for playing this game!");
+        System.out.println("Thank you for playing.");
         keyBoard.close();
     }
 
@@ -227,7 +228,7 @@ public class Game {
 
             case "go":
                 GoCommand(command);
-                if (currentArea.shortInfo().equals("Leiyin Temple")) {
+                if (currentArea.shortInfo().equals("Leiyin Temple. Just like the rumors said, the treasure box is sitting there, waiting for you. You have completed the game")) {
                     return true;
                 }
                 break;
@@ -347,16 +348,19 @@ public class Game {
      *
      * @param command the command to process
      */
+
     private void DropCommand(Command command) {
         if (command.hasAdditionalCommand()) {
             Inventory selectedInventory = player.checkInventories(command.getAdditionalCommand());
-            String selectedInventoryString = selectedInventory.toString();
+
             if (selectedInventory == null) {
                 System.out.println("Item not found. Please check if it was spelled correctly.");
             } else {
+                String selectedInventoryName = selectedInventory.getName(); 
                 player.dropInventory(selectedInventory);
                 currentArea.addInventory(selectedInventory);
-                if (!selectedInventoryString.equals("Wooden Stick")) {
+
+                if (!"Wooden Stick".equalsIgnoreCase(selectedInventoryName)) {
                     System.out.println("Item dropped successfully!");
                 }
             }
@@ -365,6 +369,7 @@ public class Game {
             player.listInventories();
         }
     }
+
 
     /**
      * Handles the "inspect" command, allowing the player to find out more information / explanation about their selected inventory item.
@@ -437,20 +442,32 @@ public class Game {
             }
         } else {
             System.out.println("You need a key to pass.");
-            System.out.println("Inventory: ");
-            player.listInventories();
 
-            String selectedInventory = keyBoard.nextLine();
-            Inventory keySelected = player.checkInventories(selectedInventory);
+            while (true) {
+                System.out.println("Inventory:");
+                player.listInventories();
+                System.out.println("Type 'exit' to leave this area.");
 
-            if (keySelected != null && !lock.Unlock(keySelected)) {
-                switchAreas(nextArea);
-            } else {
-                System.out.println("Wrong key!");
+                String selectedInventory = keyBoard.nextLine();
+
+                if (selectedInventory.equalsIgnoreCase("exit")) {
+                    System.out.println("You have chosen to leave the area.");
+                    returnToMap();
+                    return;
+                }
+
+                Inventory keySelected = player.checkInventories(selectedInventory);
+
+                if (keySelected != null && !lock.Unlock(keySelected)) {
+                    switchAreas(nextArea);
+                    break;
+                } else {
+                    System.out.println("Wrong key! Please try again.");
+                }
             }
         }
     }
-
+    
 
     /**
      * Returns to the map view from a quiz-based lock. If there is an
@@ -516,10 +533,7 @@ public class Game {
     public Player getPlayer() {
         return player;
     }
-
-    public Inventory getKey1() {
-        return moonKey;
-    }
+    
 
 
 }

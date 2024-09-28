@@ -5,6 +5,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * The PrimaryCommandsTest class is designed to test the functionality of the PrimaryCommands 
+ * class, which handles various primary commands in the game. This test class verifies the 
+ * correct processing of valid commands, handling of invalid commands, and the listing of 
+ * available commands.
+ * 
+ * @author Tianfa Zhu
+ */
+
 public class PrimaryCommandsTest {
 
     private PrimaryCommands primaryCommands;

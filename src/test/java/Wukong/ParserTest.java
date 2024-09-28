@@ -6,6 +6,15 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
+/**
+ * The ParserTest class is designed to test the functionality of the Parser class,
+ * ensuring that it correctly interprets and parses user commands from input.
+ * This test class includes various scenarios to validate both valid and invalid commands,
+ * as well as the handling of commands without additional parameters.
+ * 
+ * @author Tianfa Zhu
+ */
+
 public class ParserTest {
 
     @Test

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 /**
  * @author Tianfa Zhu
+ * @author Yang Cao
  *
  * The Area class represents a location in the game with information about its surroundings,
  * possible exits, contained items, and any monsters present.
@@ -16,8 +17,6 @@ public class Area {
     private HashMap<String, Gate> exits;
     private String mapName;
     private ArrayList<Inventory> inventories;
-
-
     
     /**
      * Constructs an Area with specified information, inventory, monster, and map name.

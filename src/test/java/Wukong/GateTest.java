@@ -3,6 +3,15 @@ package Wukong;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+
+/**
+ * The GateTest class is designed to test the functionality of the Gate class,
+ * specifically focusing on the constructors and their handling of areas and locks.
+ * This test class includes test cases to ensure that the Gate class behaves 
+ * correctly when initialized with and without a lock.
+ * 
+ * @author Tianfa Zhu
+ */
 public class GateTest {
 
     @Test
