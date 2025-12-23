@@ -61,7 +61,7 @@
     Priority: Medium
 
 
-- User Story 8:Auto-Battle Feature 
+- User Story 8: Auto-Battle Feature 
 
     As a player, I want the game to automatically engage in combat if I fail to initiate a battle within 10 seconds, so that the game continues without interruptions.
     
